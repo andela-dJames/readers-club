@@ -1,7 +1,142 @@
 package checkpoint.andela.main;
 
+import checkpoint.andela.members.Staff;
+import checkpoint.andela.members.Student;
+
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
- * Created by Daniel James on 10/1/2015.
+ * A <code>ReadersClub</code> with both staff and student members
+ * A <code>Member</code> can be registered either as a <code>Staff</code>
+ * or as a <code>Student</code>.
+ * books can be added to the <code>ReadersClub</code>
+ * Members can <code>Request</code> for books
+ * @author  Daniel James
+ * @version 0.0.1 10/1/2015.
  */
 public class ReadersClub {
+    /**
+     * the name of the given club
+     */
+    private String clubName;
+    /**
+     * the address of the given club
+     */
+    private String clubAddress;
+    /**
+     * a list of all members in a given <code>ReadersClub</code>
+     */
+    private ArrayList<Member> clubmembers;
+    /**
+     * a list of all <code>Staff</code> members in a given <code>ReadersClub</code>
+     */
+    private ArrayList<Staff>staffmembers;
+    /**
+     * a list of all <code>Student</code> members in a given <code>ReadersClub</code>
+     */
+    private ArrayList<Student>studentMembers;
+    /**
+     * a list of all books in a given <code>ReadersClub</code>
+     */
+    private ArrayList<Book> clubBooks;
+    /**
+     * a queue of requests made by members that need to be resolved
+     */
+    private Queue<Request> requests;
+
+    /**
+     * Creates a new <code>ReadersClub</code>
+     */
+    public ReadersClub() {
+        clubmembers = new ArrayList<>();
+        clubBooks = new ArrayList<>();
+        staffmembers = new ArrayList<>();
+        requests = new PriorityQueue<>();
+    }
+
+    /**
+     * creates a new <code>readersClub</code> with the following
+     * @param name the name of the <code>ReadersClub</code>
+     */
+    public ReadersClub(String name) {
+        clubName = name;
+    }
+
+    /**
+     * creates a <code>ReadersClub</code> with the following
+     * @param clubName the name of the <code>ReadersClub</code>
+     * @param clubAddress the address of the <code>ReadersClub</code>
+     */
+    public ReadersClub(String clubName, String clubAddress) {
+        this(clubName);
+        this.clubAddress = clubAddress;
+    }
+
+    public String getClubName() {
+        return clubName;
+    }
+
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+    }
+
+    public String getClubAddress() {
+        return clubAddress;
+    }
+
+    public void setClubAddress(String clubAddress) {
+        this.clubAddress = clubAddress;
+    }
+
+    public ArrayList getClubmembers() {
+        return clubmembers;
+    }
+
+    public void setClubmembers(ArrayList clubmembers) {
+        this.clubmembers = clubmembers;
+    }
+
+    public ArrayList getStaffmembers() {
+        return staffmembers;
+    }
+
+    public void setStaffmembers(ArrayList staffmembers) {
+        this.staffmembers = staffmembers;
+    }
+
+    public ArrayList getStudentMembers() {
+        return studentMembers;
+    }
+
+    public void setStudentMembers(ArrayList studentMembers) {
+        this.studentMembers = studentMembers;
+    }
+
+    public ArrayList getClubBooks() {
+        return clubBooks;
+    }
+
+    public void setClubBooks(ArrayList clubBooks) {
+        this.clubBooks = clubBooks;
+    }
+
+    /**
+     * Adds a new <code>Book</code> to the library
+     * @param book a book to be added
+     * @param numOfCopies number of copies of the given book
+     */
+    public void addBook(Book book, int numOfCopies) throws NullBookException {
+        if (book.getiSBN() == null && book.getNoOfCopies() < 1){
+            clubBooks.add(book); throw new NullBookException();
+        }
+        numOfCopies = numOfCopies + book.getNoOfCopies();
+        book.setNoOfCopies(numOfCopies);
+        clubBooks.add(book);
+    }
+
+    public void removeBook(Book book, int numOfCopies){
+
+    }
 }
