@@ -2,6 +2,7 @@ package checkpoint.andela.main;
 
 import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -45,7 +46,23 @@ public class ReadersClub {
     /**
      * a queue of requests made by members that need to be resolved
      */
-    private Queue<Request> requests;
+    private Queue<Member> requests;
+
+    public static Comparator<Member> memberPriority = new Comparator<Member>() {
+        @Override
+        public int compare(Member member, Member member1) {
+            if (member.isStaff() && member1.isStaff()) {
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+            }
+            if (member.isStaff() && member1.isStudent()) {
+                return -1;
+            }
+            if (member.isStudent() && member1.isStaff()) {
+                return 1;
+            } else
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+        }
+    };
 
     /**
      * Creates a new <code>ReadersClub</code>
@@ -54,7 +71,10 @@ public class ReadersClub {
         clubmembers = new ArrayList<>();
         clubBooks = new ArrayList<>();
         staffmembers = new ArrayList<>();
-        requests = new PriorityQueue<>();
+        studentMembers = new ArrayList<>();
+        //bookRecords = new ArrayList<>();
+        requests = new PriorityQueue<Member>(10, memberPriority);
+
     }
 
     /**
@@ -137,35 +157,36 @@ public class ReadersClub {
         clubBooks.add(book);
     }
 
-    public void removeBook(Book book, int numOfCopies){
+    public void removeBook(Book book, int numOfCopies) throws NullBookException {
+        if (!clubBooks.contains(book)){
+            throw new NullBookException();
+        }
+        else {
+            clubBooks.remove(book);
+            numOfCopies = book.getNoOfCopies() - numOfCopies;
+            book.setNoOfCopies(numOfCopies);
+        }
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public Comparator<Member> memberPriority = new Comparator<Member>() {
-        @Override
-        public int compare(Member member, Member member1) {
-            if (member.isStaff() && member1.isStaff()) {
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
-            }
-            if (member.isStaff() && member1.isStudent()) {
-                return -1;
-            }
-            if (member.isStudent() && member1.isStaff()) {
-                return 1;
-            } else
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+    private void registration (Member member, DateTime date) {
+        if (member.isStaff()) {
+            staffmembers.add((Staff) member);
+        } else if (member.isStudent()) {
+            studentMembers.add((Student) member);
         }
-    };
+    }
+
+    public void register(Member member) throws NullMemberException{
+        if (member.getNumber().equals(null)){
+            throw new NullMemberException();
+        }
+        else {
+            DateTime date = DateTime.now();
+            member.setDateOfRegistration(date);
+            registration(member, date);
+            System.out.println(member.getFullName() + " was Successfully registered");
+        }
+    }
+
 }

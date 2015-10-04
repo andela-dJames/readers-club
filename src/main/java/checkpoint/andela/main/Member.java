@@ -167,10 +167,12 @@ public class Member {
     }
 
     public Book borrowBook(Book book){
+        listOfBooks.add(book);
         return book;
     }
 
     public Book returnBook(Book book) {
+        listOfBooks.remove(book);
         return book;
     }
 
