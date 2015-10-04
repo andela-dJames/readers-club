@@ -4,6 +4,7 @@ import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -139,4 +140,32 @@ public class ReadersClub {
     public void removeBook(Book book, int numOfCopies){
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public Comparator<Member> memberPriority = new Comparator<Member>() {
+        @Override
+        public int compare(Member member, Member member1) {
+            if (member.isStaff() && member1.isStaff()) {
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+            }
+            if (member.isStaff() && member1.isStudent()) {
+                return -1;
+            }
+            if (member.isStudent() && member1.isStaff()) {
+                return 1;
+            } else
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+        }
+    };
 }

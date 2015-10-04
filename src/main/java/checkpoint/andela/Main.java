@@ -11,8 +11,8 @@ public class Main {
         bk.setNoOfCopies(20);
         int x = bk.getNoOfCopies();
         System.out.println(bk.getiSBN()+ x);
-        RC.addBook(bk, 20);
-        RC.addBook(bk, 20);
+//        RC.addBook(bk, 20);
+//        RC.addBook(bk, 20);
         System.out.println(bk.getiSBN() + " "+ bk.getNoOfCopies());
         // write your code here
 	// write your code here
