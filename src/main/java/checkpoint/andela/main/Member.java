@@ -189,4 +189,17 @@ public class Member {
         return false;
     }
 
+    public boolean ownBook(Book book) {
+        if (listOfBooks.isEmpty())
+            return false;
+            else{
+        for (Book book1: listOfBooks) {
+            if (listOfBooks.contains(book)) {
+                return true;
+            }
+        }
+        }
+        return false;
+    }
+
 }
