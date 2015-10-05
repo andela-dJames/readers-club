@@ -48,6 +48,11 @@ public class ReadersClub {
      */
     private Queue<Member> requests;
 
+    /**
+     * <codee>memberPriority</codee> implements <code>Comparator<super E></></code>
+     *<code>Overides</code> <code>compare</code> method.
+     *
+     */
     public static Comparator<Member> memberPriority = new Comparator<Member>() {
         @Override
         public int compare(Member member, Member member1) {
@@ -150,13 +155,17 @@ public class ReadersClub {
      */
     public void addBook(Book book, int numOfCopies) throws NullBookException {
         if (book.getiSBN() == null && book.getNoOfCopies() < 1){
-            clubBooks.add(book); throw new NullBookException();
+            throw new NullBookException();
         }
         numOfCopies = numOfCopies + book.getNoOfCopies();
         book.setNoOfCopies(numOfCopies);
         clubBooks.add(book);
     }
-
+    /**
+     * Removes a new <code>Book</code> to the library
+     * @param book a book to be added
+     * @param numOfCopies number of copies of the given book
+     */
     public void removeBook(Book book, int numOfCopies) throws NullBookException {
         if (!clubBooks.contains(book)){
             throw new NullBookException();
@@ -172,11 +181,19 @@ public class ReadersClub {
     private void registration (Member member, DateTime date) {
         if (member.isStaff()) {
             staffmembers.add((Staff) member);
+            clubmembers.add(member);
         } else if (member.isStudent()) {
             studentMembers.add((Student) member);
+            clubmembers.add(member);
         }
     }
 
+    /**
+     * Registers a new member into the Club.
+     * @param member to be registered
+     * @throws NullMemberException if member number is not provided.
+     * calls <code>registration</code> method.
+     */
     public void register(Member member) throws NullMemberException{
         if (member.getNumber().equals(null)){
             throw new NullMemberException();

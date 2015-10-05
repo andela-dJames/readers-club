@@ -162,6 +162,14 @@ public class Member {
         this.dateOfdeRegistration = dateOfdeRegistration;
     }
 
+    public ArrayList<Book> getListOfBooks() {
+        return listOfBooks;
+    }
+
+    public void setListOfBooks(ArrayList<Book> listOfBooks) {
+        this.listOfBooks = listOfBooks;
+    }
+
     public DateTime getCurrentTime(){
         return DateTime.now();
     }
@@ -177,7 +185,9 @@ public class Member {
     }
 
     public boolean equals(Member member) {
-        return this.getNumber().equals(member.getNumber());
+        if (new Member().getNumber() == member.getNumber())
+            return true;
+        else return false;
     }
 
 

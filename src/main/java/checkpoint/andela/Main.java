@@ -1,6 +1,7 @@
 package checkpoint.andela;
 
 import checkpoint.andela.main.Book;
+import checkpoint.andela.main.Member;
 import checkpoint.andela.main.ReadersClub;
 
 public class Main {
@@ -16,5 +17,10 @@ public class Main {
         System.out.println(bk.getiSBN() + " "+ bk.getNoOfCopies());
         // write your code here
 	// write your code here
+        Member member = new Member("1234", "daniel");
+        Member member2 = new Member("1234", "daniel");
+        System.out.println(member.ownBook(bk));
     }
+
+
 }

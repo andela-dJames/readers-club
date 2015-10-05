@@ -46,4 +46,5 @@ public class MemberTest {
         member1.returnBook(book);
         assertFalse(member1.ownBook(book));
     }
+
 }
