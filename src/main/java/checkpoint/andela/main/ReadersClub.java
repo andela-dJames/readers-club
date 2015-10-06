@@ -110,50 +110,62 @@ public class ReadersClub {
     }
 
     public String getClubName() {
+
         return clubName;
     }
 
     public void setClubName(String clubName) {
+
         this.clubName = clubName;
     }
 
     public String getClubAddress() {
+
         return clubAddress;
     }
 
     public void setClubAddress(String clubAddress) {
+
         this.clubAddress = clubAddress;
     }
 
     public ArrayList getClubmembers() {
+
         return clubmembers;
     }
 
     public void setClubmembers(ArrayList clubmembers) {
+
         this.clubmembers = clubmembers;
     }
 
     public ArrayList getStaffmembers() {
+
         return staffmembers;
     }
 
     public void setStaffmembers(ArrayList staffmembers) {
+
         this.staffmembers = staffmembers;
     }
 
     public ArrayList getStudentMembers() {
+
         return studentMembers;
     }
 
     public void setStudentMembers(ArrayList studentMembers) {
+
         this.studentMembers = studentMembers;
     }
 
     public ArrayList getClubBooks() {
+
         return clubBooks;
     }
 
     public void setClubBooks(ArrayList clubBooks) {
+
         this.clubBooks = clubBooks;
     }
 
@@ -187,6 +199,11 @@ public class ReadersClub {
 
     }
 
+    /**
+     * Adds members into respective club lists
+     * @param member a member to be registered
+     * @param date the date of registration of the member
+     */
     private void registration (Member member, DateTime date) {
         if (member.isStaff()) {
             staffmembers.add((Staff) member);
@@ -220,77 +237,130 @@ public class ReadersClub {
      * @param member A registered member
      * @param book A Book in the club library
      */
-    public void acknowledge(Member member, Book book) throws NullBookException, NullMemberException{
-//        if (book.equals(null) || (!clubBooks.contains(book)) ){
-//            throw new NullBookException();
-//        }
-//        if (!clubmembers.contains(member)){
-//            throw new NullMemberException();
-//        }
+    public void acknowledge(Member member, Book book) throws NullBookException, NullMemberException {
 
         bookRecords = new BookRecords(member, book);
+
         int number = bookRecords.getNumOfRequesters() + 1;
+
         bookRecords.setNumOfRequesters(number);
+
         member.makeRequest(member, book);
 
         book.setinRequest(true);
     }
 
-    public void addRequest(Book book, Member member){
-        requests.offer(member);
-//        request = member.makeRequest();
-//
-//            this.setRequest(new Request(member, DateTime.now()));
-//            requests.offer(request);
+    /**
+     * adds a request to the Priority queue if the book is in request by many members.
+     * @param book
+     * @param member
+     */
+    public void addRequest(Book book, Member member) {
 
-//        if (book.isInRequest() && book.getNoOfCopies() < bookRecord.getNumOfRequesters()){
-//            requests.offer(new Request(member, DateTime.now()));
-//        }
-//        else releaseBook(book);
+        requests.offer(member);
+    }
+    /**
+     * Validates a club member
+     * @param member a member to be validated
+     * @return true if member is registered
+     * @throws NullMemberException
+     */
+    public boolean validateMember(Member member) throws NullMemberException {
+
+        if (clubmembers.contains(member))
+            return true;
+
+        return false;
+    }
+    /**
+     * Validates a club member
+     * @param book a book to be validated
+     * @return true if book is in <code>clubBooks</code>
+     * @throws NullMemberException
+     */
+    public boolean validateBook(Book book) {
+
+        if (clubBooks.contains(book))
+            return true;
+
+        return false;
     }
 
+    /**
+     * A record of books requsted by members in a club
+     */
     public class BookRecords{
-
+        /**
+         * A member that made request
+         */
         private Member member;
-
+        /**
+         * a book in that is being recorded
+         */
         private Book book;
-
+        /**
+         * the number of people making request
+         */
         private int numOfRequesters;
 
+        /**
+         * Creates a new <code>BookRecord</code>
+         */
         public BookRecords() {
+
         }
 
+        /**
+         * Creates a new <code>BookRecord</code> with the following parameters
+         * @param member a member
+         */
         public BookRecords(Member member) {
+
             this.member = member;
         }
 
+        /**
+         * Creates a new <code>BookRecord</code> with the following parameters
+         * @param member a member
+         * @param book a book being recorded
+         */
         public BookRecords(Member member, Book book){
+
             this(member);
+
             this.book = book;
         }
 
         public Member getMember() {
+
             return member;
         }
 
         public void setMember(Member member) {
+
             this.member = member;
         }
 
         public Book getBook() {
+
             return book;
         }
 
         public void setBook(Book book) {
+
             this.book = book;
         }
 
         public int getNumOfRequesters() {
+
             return numOfRequesters;
+
         }
 
         public void setNumOfRequesters(int numOfRequesters) {
+
             this.numOfRequesters = numOfRequesters;
+
         }
     }
 
