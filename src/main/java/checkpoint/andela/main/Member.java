@@ -185,9 +185,7 @@ public class Member {
     }
 
     public boolean equals(Member member) {
-        if (new Member().getNumber() == member.getNumber())
-            return true;
-        else return false;
+        return this.getNumber()==member.getNumber();
     }
 
 
@@ -211,5 +209,11 @@ public class Member {
         }
         return false;
     }
+     public Request makeRequest(Member member, Book book) {
+
+         request = new Request(member,DateTime.now() );
+
+         return request;
+     }
 
 }

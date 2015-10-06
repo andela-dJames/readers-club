@@ -18,14 +18,14 @@ public class MemberTest {
         Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
         Member member1 = new Student("ID-15-006", "Nadaya Engesi", 'M');
 
-        assertTrue(member.equals( member1));
+        assertTrue(member.equals(member1));
 
     }
 
     @Test
     public void shouldReturnFalseForTwoMembersWithEqualProperties() {
         Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        Member member1 = new Student("ID-15-006", "Nadaya Engesi", 'M');
+        Member member1 = new Student("ID-15-007", "Brice", 'M');
 
         assertFalse(member.equals(member1));
     }
@@ -45,6 +45,17 @@ public class MemberTest {
         member1.borrowBook(book);
         member1.returnBook(book);
         assertFalse(member1.ownBook(book));
+    }
+    @Test
+    public void makeRequestSetsBookInRequest() throws NullBookException, NullMemberException {
+        Member member1 = new Student("ID-15-018", "Jeremy Johnson", 'M');
+        Book book = new Book("1005-ISBN-34", "The Theory of #TIA", "E");
+        ReadersClub readersClub = new ReadersClub();
+        member1.makeRequest(member1, book);
+        readersClub.acknowledge(member1, book);
+
+        assertTrue(book.isInRequest());
+
     }
 
 }

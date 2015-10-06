@@ -48,6 +48,8 @@ public class ReadersClub {
      */
     private Queue<Member> requests;
 
+    private BookRecords bookRecords;
+
     /**
      * <codee>memberPriority</codee> implements <code>Comparator<super E></></code>
      *<code>Overides</code> <code>compare</code> method.
@@ -74,10 +76,13 @@ public class ReadersClub {
      */
     public ReadersClub() {
         clubmembers = new ArrayList<>();
+
         clubBooks = new ArrayList<>();
+
         staffmembers = new ArrayList<>();
+
         studentMembers = new ArrayList<>();
-        //bookRecords = new ArrayList<>();
+
         requests = new PriorityQueue<Member>(10, memberPriority);
 
     }
@@ -87,6 +92,8 @@ public class ReadersClub {
      * @param name the name of the <code>ReadersClub</code>
      */
     public ReadersClub(String name) {
+
+        this();
         clubName = name;
     }
 
@@ -96,7 +103,9 @@ public class ReadersClub {
      * @param clubAddress the address of the <code>ReadersClub</code>
      */
     public ReadersClub(String clubName, String clubAddress) {
+
         this(clubName);
+
         this.clubAddress = clubAddress;
     }
 
@@ -203,6 +212,85 @@ public class ReadersClub {
             member.setDateOfRegistration(date);
             registration(member, date);
             System.out.println(member.getFullName() + " was Successfully registered");
+        }
+    }
+
+    /**
+     * Acknowledges a <code>request</code> made by a member of the Club using the following parameters
+     * @param member A registered member
+     * @param book A Book in the club library
+     */
+    public void acknowledge(Member member, Book book) throws NullBookException, NullMemberException{
+//        if (book.equals(null) || (!clubBooks.contains(book)) ){
+//            throw new NullBookException();
+//        }
+//        if (!clubmembers.contains(member)){
+//            throw new NullMemberException();
+//        }
+
+        bookRecords = new BookRecords(member, book);
+        int number = bookRecords.getNumOfRequesters() + 1;
+        bookRecords.setNumOfRequesters(number);
+        member.makeRequest(member, book);
+
+        book.setinRequest(true);
+    }
+
+    public void addRequest(Book book, Member member){
+        requests.offer(member);
+//        request = member.makeRequest();
+//
+//            this.setRequest(new Request(member, DateTime.now()));
+//            requests.offer(request);
+
+//        if (book.isInRequest() && book.getNoOfCopies() < bookRecord.getNumOfRequesters()){
+//            requests.offer(new Request(member, DateTime.now()));
+//        }
+//        else releaseBook(book);
+    }
+
+    public class BookRecords{
+
+        private Member member;
+
+        private Book book;
+
+        private int numOfRequesters;
+
+        public BookRecords() {
+        }
+
+        public BookRecords(Member member) {
+            this.member = member;
+        }
+
+        public BookRecords(Member member, Book book){
+            this(member);
+            this.book = book;
+        }
+
+        public Member getMember() {
+            return member;
+        }
+
+        public void setMember(Member member) {
+            this.member = member;
+        }
+
+        public Book getBook() {
+            return book;
+        }
+
+        public void setBook(Book book) {
+            this.book = book;
+        }
+
+        public int getNumOfRequesters() {
+            return numOfRequesters;
+        }
+
+        public void setNumOfRequesters(int numOfRequesters) {
+            this.numOfRequesters = numOfRequesters;
         }
     }
 

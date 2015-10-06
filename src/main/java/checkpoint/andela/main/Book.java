@@ -93,7 +93,7 @@ public class Book {
         this.iSBN = iSBN;
     }
 
-    public void SetinRequest(boolean inRequest){
+    public void setinRequest(boolean inRequest){
         this.inRequest = inRequest;
     }
 

@@ -2,6 +2,8 @@ package checkpoint.andela.members;
 
 import checkpoint.andela.main.Member;
 
+import java.util.ArrayList;
+
 /**
  * A Staff who is a member of the Readers Club
  * @author  Daniel James.
@@ -12,6 +14,8 @@ public class Staff extends Member {
      * The net pay of the Staff Member
      */
     private double netPay;
+
+    private ArrayList<Student> students;
 
     /**
      * creates a <code>Staff</code> member
@@ -62,7 +66,6 @@ public class Staff extends Member {
      * @param dateOfBirth the staff's date of birth
      * @param phoneNumber the staff's pone number
      */
-
     public Staff(String staffNumber, String fullName, char gender, String dateOfBirth, String phoneNumber) {
         super(staffNumber, fullName, gender, dateOfBirth, phoneNumber);
     }
@@ -76,6 +79,7 @@ public class Staff extends Member {
     }
 
     public void assignToStudents(Student student){
+        students.add(student);
     }
     /**
      * @return <code>true</code> if member is staff
