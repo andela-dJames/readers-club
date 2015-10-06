@@ -129,37 +129,37 @@ public class ReadersClub {
         this.clubAddress = clubAddress;
     }
 
-    public ArrayList getClubmembers() {
+    public ArrayList<Member> getClubmembers() {
 
         return clubmembers;
     }
 
-    public void setClubmembers(ArrayList clubmembers) {
+    public void setClubmembers(ArrayList<Member> clubmembers) {
 
         this.clubmembers = clubmembers;
     }
 
-    public ArrayList getStaffmembers() {
+    public ArrayList<Staff> getStaffmembers() {
 
         return staffmembers;
     }
 
-    public void setStaffmembers(ArrayList staffmembers) {
+    public void setStaffmembers(ArrayList<Staff> staffmembers) {
 
         this.staffmembers = staffmembers;
     }
 
-    public ArrayList getStudentMembers() {
+    public ArrayList<Student> getStudentMembers() {
 
         return studentMembers;
     }
 
-    public void setStudentMembers(ArrayList studentMembers) {
+    public void setStudentMembers(ArrayList<Student> studentMembers) {
 
         this.studentMembers = studentMembers;
     }
 
-    public ArrayList getClubBooks() {
+    public ArrayList<Book> getClubBooks() {
 
         return clubBooks;
     }
@@ -257,7 +257,21 @@ public class ReadersClub {
      */
     public void addRequest(Book book, Member member) {
 
-        requests.offer(member);
+        if (book.isInRequest() && bookRecords.getNumOfRequesters() > book.getNoOfCopies()) {
+            requests.offer(member);
+        }
+        else
+            releaseBook(member, book);
+    }
+
+    /**
+     * releases a given book to a member
+     * @param member Member with request.
+     * @param book book in request
+     */
+    public void releaseBook(Member member, Book book) {
+
+       member.borrowBook(book);
     }
     /**
      * Validates a club member
@@ -284,6 +298,11 @@ public class ReadersClub {
             return true;
 
         return false;
+    }
+
+    public void processRequest() {
+        Member member = requests.poll();
+        member.borrowBook(bookRecords.getBook());
     }
 
     /**
