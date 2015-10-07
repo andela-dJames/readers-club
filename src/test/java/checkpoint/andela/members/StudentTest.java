@@ -13,14 +13,14 @@ import static org.junit.Assert.assertTrue;
  * @version 0.0.1 10/1/2015.
  */
 public class StudentTest {
-    @Test
-    public void isStudentShouldReturnTrue(){
-        Student student = new Student();
-        assertTrue(student.isStudent());
-    }
-    @Test
-    public void isStaffShouldreturnfalse(){
-        Member student = new Student();
-        assertFalse(student.isStaff());
-    }
+//    @Test
+//    public void isStudentShouldReturnTrue(){
+//        Student student = new Student();
+//        assertTrue(student.isStudent());
+//    }
+//    @Test
+//    public void isStaffShouldreturnfalse(){
+//        Member student = new Student();
+//        assertFalse(student.isStaff());
+//    }
 }

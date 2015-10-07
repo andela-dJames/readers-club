@@ -1,5 +1,6 @@
 package checkpoint.andela.members;
 
+import checkpoint.andela.main.Club;
 import checkpoint.andela.main.Member;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class Staff extends Member {
     /**
      * creates a <code>Staff</code> member
      */
-    public Staff() {
+    public Staff(Club club) {
+        super(club);
     }
     /**
      * Creates a <code>Staff</code> member with this parameter
@@ -79,7 +81,7 @@ public class Staff extends Member {
     }
 
     public void assignToStudents(Student student){
-        students.add(student);
+
     }
     /**
      * @return <code>true</code> if member is staff

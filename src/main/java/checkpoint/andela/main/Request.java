@@ -18,6 +18,8 @@ public class Request implements Comparable<Request> {
      */
     private Member member;
 
+    private String number;
+
     /**
      * creates an empty <code>Request</code>
      */
@@ -26,21 +28,21 @@ public class Request implements Comparable<Request> {
 
     /**
      * Creates a new <code>Request</code> with the following parameter
-     * @param member
+     * @param number of the member
      */
-    public Request(Member member) {
-        this.member = member;
+    public Request(String number) {
+        this.number = number;
         requestDate = DateTime.now();
     }
 
     /**
      * Creates a new <code>Request</code> with the following parameters
-     * @param member
-     * @param date
+     * @param num number of the member making request
+     * @param book the Book in request
      */
-    public Request(Member member, DateTime date) {
-        this(member);
-        requestDate = date;
+    public Request(String num, Book book) {
+        this(num);
+
     }
 
     public DateTime getRequestDate() {

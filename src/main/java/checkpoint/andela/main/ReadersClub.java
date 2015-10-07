@@ -176,7 +176,7 @@ public class ReadersClub {
      */
     public void addBook(Book book, int numOfCopies) throws NullBookException {
         if (book.getiSBN() == null && book.getNoOfCopies() < 1){
-            throw new NullBookException();
+            //throw new NullBookException();
         }
         numOfCopies = numOfCopies + book.getNoOfCopies();
         book.setNoOfCopies(numOfCopies);
@@ -189,7 +189,7 @@ public class ReadersClub {
      */
     public void removeBook(Book book, int numOfCopies) throws NullBookException {
         if (!clubBooks.contains(book)){
-            throw new NullBookException();
+            throw new NullBookException(numOfCopies);
         }
         else {
             clubBooks.remove(book);
@@ -245,7 +245,7 @@ public class ReadersClub {
 
         bookRecords.setNumOfRequesters(number);
 
-        member.makeRequest(member, book);
+       // member.makeRequest(member, book);
 
         book.setinRequest(true);
     }
@@ -271,7 +271,7 @@ public class ReadersClub {
      */
     public void releaseBook(Member member, Book book) {
 
-       member.borrowBook(book);
+      // member.borrowBook(book);
     }
     /**
      * Validates a club member
@@ -302,7 +302,7 @@ public class ReadersClub {
 
     public void processRequest() {
         Member member = requests.poll();
-        member.borrowBook(bookRecords.getBook());
+        //member.borrowBook(bookRecords.getBook());
     }
 
     /**
