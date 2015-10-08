@@ -24,49 +24,6 @@ public class MemberTest {
     }
 
     @Test
-    public void membersListShouldContainNewlyAddedMembers() {
-
-        ReaderClub Andela = new ReaderClub();
-        Staff tosin = new Staff(Andela);
-        Staff chidi = new Staff(Andela);
-
-        assertTrue(Andela.getMembers().contains(tosin));
-
-    }
-
-    @Test
-    public void membersAreAddedToCorrespondingList() {
-
-        ReaderClub Andela = new ReaderClub();
-        Staff tosin = new Staff(Andela);
-        Staff chidi = new Staff(Andela);
-        Student grace = new Student(Andela);
-
-        Andela.addToList(tosin);
-        Andela.addToList(chidi);
-        Andela.addToList(grace);
-
-        assertTrue(Andela.getStaffList().contains(chidi));
-
-
-    }
-
-    @Test
-    public void membersArenotMismatchedInList(){
-
-        ReaderClub Andela = new ReaderClub();
-        Staff tosin = new Staff(Andela);
-        Staff chidi = new Staff(Andela);
-        Student grace = new Student(Andela);
-
-        Andela.addToList(tosin);
-        Andela.addToList(chidi);
-        Andela.addToList(grace);
-
-        assertFalse(Andela.getStudentList().contains(tosin));
-
-    }
-    @Test
     public void clubMembersCanRequstBook() throws NullBookException, NullMemberException {
 
         ReaderClub Andela = new ReaderClub();
@@ -81,10 +38,18 @@ public class MemberTest {
         tosin.borrowBook(book1);
 
         assertTrue(book1.isInRequest());
+    }
+    @Test
+    public void onlyAvailableBooksCanBeREquested() throws NullMemberException, NullBookException {
 
+        ReaderClub Andela = new ReaderClub();
+        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
+        Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+        Staff tosin = new Staff(Andela);
 
+        tosin.borrowBook(book1);
 
-
+        assertFalse(book1.isInRequest());
 
     }
 

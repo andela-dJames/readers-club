@@ -87,9 +87,11 @@ public class ReaderClub implements Club{
 
     @Override
     public void addBook(Book book, int numberOfCopies)  throws NullBookException {
+
         numberOfCopies = numberOfCopies + book.getNoOfCopies();
         book.setNoOfCopies(numberOfCopies);
-        if (!(book.getiSBN() == null) && book.getNoOfCopies() >1){
+
+        if (!(book.getiSBN() == null) && book.getNoOfCopies() >1) {
         clubBooks.add(book);
         }
         else {
@@ -100,7 +102,8 @@ public class ReaderClub implements Club{
 
     @Override
     public void borrowBook(Book book) throws NullMemberException, NullBookException {
-        if (clubBooks.contains(book)){
+
+        if (clubBooks.contains(book)) {
             book.setinRequest(true);
             count++;
             book.setNumOfRequests(book.getNumOfRequests() + 1);
@@ -109,7 +112,8 @@ public class ReaderClub implements Club{
 
     @Override
     public void lendBook(Book book, String num) {
-        if (book.getNoOfCopies() > 1){
+
+        if (book.getNoOfCopies() > 1) {
             request = new Request(num, book);
             requests.add(request);
         }
