@@ -170,29 +170,34 @@ public class Member {
         club.borrowBook(book);
     }
 
+    /**
+     * Member returns book to club.
+     * @param book
+     * @param id
+     */
     public void returnBook(Book book, int id ) {
+
         club.lendBook(book);
 
     }
 
-    public boolean equals(Member member) {
-        return this.getNumber()==member.getNumber();
-    }
-
-
     public boolean isStaff(){
+
         return false;
     }
 
     public boolean isStudent() {
+
         return false;
     }
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 }
