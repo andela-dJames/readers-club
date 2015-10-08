@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
  * @author Daniel James
  *@version  0.0.1 10/1/2015.
  */
-public class Request implements Comparable<Request> {
+public class Request {
     /**
      * The date a <code>Request</code> is made
      */
@@ -53,23 +53,7 @@ public class Request implements Comparable<Request> {
         this.requestDate = requestDate;
     }
 
-    @Override
-    public int compareTo(Request request) {
-        if(this.getMember().isStaff() && request.getMember().isStaff()) {
-            return getRequestDate().compareTo(request.getRequestDate());
-        }
-        else if (this.getMember().isStudent() && request.getMember().isStudent()) {
-            return getRequestDate().compareTo(request.getRequestDate());
-        }
-        else if (this.getMember().isStaff() && request.getMember().isStudent()) {
-            return 1;
-        }
-        else if (this.getMember().isStudent() && request.getMember().isStaff()) {
-            return -1;
-        }
-        else return 0;
 
-    }
     /**
      * @return <code>Member</code> that initiated request
      */

@@ -8,9 +8,10 @@ public interface Club {
     public void addMember(Member member);
     public void addBook(Book book, int nunberofCopies) throws NullBookException ;
     public void borrowBook (Book book) throws NullMemberException, NullBookException;
-    public void lendBook(Book book, String num);
+    public void lendBook(Book book);
     public int getTotalRequst();
     public void addToQ (Member member);
+    public void returnBook(Book book, int id);
 
 
 }

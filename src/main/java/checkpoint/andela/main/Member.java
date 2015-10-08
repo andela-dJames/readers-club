@@ -170,7 +170,8 @@ public class Member {
         club.borrowBook(book);
     }
 
-    public void returnBook(Book book) {
+    public void returnBook(Book book, int id ) {
+        club.lendBook(book);
 
     }
 

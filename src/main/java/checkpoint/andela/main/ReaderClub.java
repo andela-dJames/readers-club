@@ -16,12 +16,16 @@ import java.util.Queue;
  */
 public class ReaderClub implements Club{
 
+    private Member member;
+    private static boolean hasRequst;
+
     private ArrayList<Member> members;
     private ArrayList<Request> requests;
     private ArrayList<Staff> staffList;
     private ArrayList<Student> studentList;
     private ArrayList<Book> clubBooks;
-    private Queue requestQueue;
+    private ArrayList<Record> records;
+    private Queue<Member> requestQueue;
 
 
     private int count =1;
@@ -53,8 +57,8 @@ public class ReaderClub implements Club{
         requests = new ArrayList<Request>();
         staffList = new ArrayList<Staff>();
         studentList = new ArrayList<Student>();
-
-        requestQueue = new PriorityQueue<>(10, memberPriority);
+        records = new ArrayList<Record>();
+        requestQueue = new PriorityQueue<Member>(10, memberPriority);
 
     }
 
@@ -96,7 +100,7 @@ public class ReaderClub implements Club{
         }
         else {
             clubBooks.add(book);
-            throw new NullBookException(numberOfCopies);
+
         }
     }
 
@@ -111,12 +115,14 @@ public class ReaderClub implements Club{
     }
 
     @Override
-    public void lendBook(Book book, String num) {
+    public void lendBook(Book book) {
+        Member member = requestQueue.poll();
+        int id = member.getId();
+        Record record= new Record(book, id);
+        records.add(record);
+        int num = book.getNoOfCopies();
+        book.setNoOfCopies(num - 1);
 
-        if (book.getNoOfCopies() > 1) {
-            request = new Request(num, book);
-            requests.add(request);
-        }
     }
 
     @Override
@@ -134,14 +140,23 @@ public class ReaderClub implements Club{
 
     }
 
-    public int getMemberPriority(Member member) {
-        if (member.isStaff()){
-            return 1;
-        }
-        else return 0;
+    @Override
+    public void returnBook(Book book, int id) {
+
+        records.removeIf(record -> record.memberID == id );
+        int num = book.getNumOfRequests();
+        book.setNoOfCopies(num+1);
 
     }
 
+    public void resolve(Book book, Member member) throws NullMemberException, NullBookException {
+
+       if (book.isInRequest() && book.getNumOfRequests() > book.getNoOfCopies()){
+
+           addToQ(member);
+       }
+
+    }
     public Queue getRequestQueue() {
         return requestQueue;
     }
@@ -167,5 +182,37 @@ public class ReaderClub implements Club{
     public ArrayList<Student> getStudentList() {
 
         return studentList;
+    }
+
+    public ArrayList<Book> getClubBooks() {
+
+        return clubBooks;
+    }
+
+    public ArrayList<Record> getRecords() {
+        return records;
+    }
+
+    /**
+     * A record of books Borrowed from A club
+     */
+    public class Record {
+
+        private Book book;
+
+        /**
+         * the id of the member
+         */
+        private int memberID;
+
+        /**
+         * Creates a new Record with the given parameter
+         * @param book a book that is borrowed
+         * @param id the id of the  member that borrowed the book
+         */
+        public Record(Book book, int id) {
+            this.book = book;
+            memberID = id;
+        }
     }
 }

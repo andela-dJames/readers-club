@@ -11,7 +11,7 @@ import java.util.Queue;
 public class Main {
 
     public static void main(String[] args) throws NullBookException, NullMemberException {
-        ReadersClub RC = new ReadersClub();
+        //ReadersClub RC = new ReadersClub();
         Book bk = new Book("12345");
         bk.setNoOfCopies(20);
         int x = bk.getNoOfCopies();
