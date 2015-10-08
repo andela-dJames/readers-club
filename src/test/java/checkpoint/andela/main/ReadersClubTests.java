@@ -96,21 +96,25 @@ public class ReadersClubTests {
     @Test
     public void membersAreAddedToQueueIfBookAlreadyIsInRequest() throws NullBookException, NullMemberException {
 
-            ReaderClub Andela = new ReaderClub();
-            Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
-            Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
-            Staff tosin = new Staff(Andela);
-            Staff chidi = new Staff(Andela);
-            Student daniel = new Student(Andela);
+        ReaderClub Andela = new ReaderClub();
+        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
+        Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+        Staff tosin = new Staff(Andela);
+        Staff chidi = new Staff(Andela);
+        Student daniel = new Student(Andela);
 
-            Andela.addBook(book, 20);
-            Andela.addBook(book1, 2);
-            daniel.borrowBook(book1);
+        Andela.addBook(book, 20);
+        Andela.addBook(book1, 2);
 
-            Andela.resolve(book1, tosin);
+        tosin.borrowBook(book1);
+        chidi.borrowBook(book1);
+        daniel.borrowBook(book1);
+        daniel.borrowBook(book);
+        Andela.resolve(book1, tosin);
+        Andela.resolve(book1, chidi);
 
-            assertEquals("Queue should contain 4 members", 2, Andela.getRequestQueue().size());
-            //assertTrue(Andela.getRequestQueue().contains(tosin));
+        assertTrue(Andela.getRequestQueue().contains(chidi));
+
 
     }
 
