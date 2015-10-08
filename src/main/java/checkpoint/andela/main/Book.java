@@ -27,7 +27,11 @@ public class Book {
      */
     private boolean inRequest;
 
-    public Book() {
+    private int numOfRequests;
+
+    private Club club;
+    public Book(Club club) {
+        this.club = club;
     }
 
     /**
@@ -101,4 +105,11 @@ public class Book {
         return inRequest;
     }
 
+    public int getNumOfRequests() {
+        return numOfRequests;
+    }
+
+    public void setNumOfRequests(int numOfRequests) {
+        this.numOfRequests = numOfRequests;
+    }
 }

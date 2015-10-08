@@ -2,6 +2,7 @@ package checkpoint.andela.main;
 
 import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
@@ -11,89 +12,168 @@ import static org.junit.Assert.assertTrue;
 
 
 /**
- * Created by Daniel James on 10/4/2015.
+ * Test Cases for methods in <code>ReaderClub</code>
+ * @author Daniel James
  */
 public class ReadersClubTests {
-    @Test
-    public void addBookShouldAddUpadateClubBooks() throws NullBookException{
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("123-isbn-001", "Oluwa Tosin");
-        book.setNoOfCopies(20);
-        int numOfcps = book.getNoOfCopies();
-        readersClub.addBook(book, 5);
 
-        assertEquals("addBook should add 5 copies to clubBooks", 25, book.getNoOfCopies());
+    ReaderClub Andela = new ReaderClub();
 
+    Staff tosin = new Staff(Andela);
+
+    Staff chidi = new Staff(Andela);
+
+    Student grace = new Student(Andela);
+
+    Student daniel = new Student(Andela);
+
+    Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
+
+    Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+    /**
+     * Class to run before every method in test
+     * @throws Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+
+        Andela.addToList(tosin);
+
+        Andela.addToList(chidi);
+
+        Andela.addToList(grace);
+
+        Andela.addBook(book, 20);
+
+        Andela.addBook(book1, 4);
+
+        tosin.borrowBook(book1);
+
+        chidi.borrowBook(book1);
+
+        daniel.borrowBook(book1);
+
+        daniel.borrowBook(book);
     }
 
     @Test
-    public void removeBookShouldReoveBookfromClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("123-isbn-001", "Michael Rosenberg");
-        book.setNoOfCopies(20);
-        int numOfcps = book.getNoOfCopies();
-        readersClub.addBook(book, 5);
-        readersClub.removeBook(book, 5);
+    public void membersArenotMismatchedInList(){
 
-        assertEquals("addBook should add 5 copies to clubBooks", 20, book.getNoOfCopies());
+        assertFalse(Andela.getStudentList().contains(tosin));
+
     }
-
     @Test
-    public void registerShoulAddNewStudentToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.getStudentMembers().contains(member1));
+    public void membersListShouldContainNewlyAddedMembers() {
+
+
+        assertTrue(Andela.getMembers().contains(tosin));
     }
-
     @Test
-    public void registerShoulAddNewStaffToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.getStaffmembers().contains(member1));
+    public void membersAreAddedToCorrespondingList() {
+
+        assertTrue(Andela.getStaffList().contains(chidi));
+    }
+    @Test
+    public void booksAreAddedToClubBooks() throws NullBookException {
+
+        assertEquals("ClubBooks should return 2", 2, Andela.getClubBooks().size());
     }
 
-    @Test
-    public void registerShoulAddNewMemberToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        readersClub.register(member);
-        assertTrue(readersClub.getClubmembers().contains(member1));
-        assertTrue(readersClub.getClubmembers().contains(member));
-        assertEquals("size of the club members should return 2", 2, readersClub.getClubmembers().size());
-    }
 
     @Test
-    public void validatememberShouldReturnTrueifMemberisRegistered() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.validateMember(member1));
+    public void clubTracksNumberOfsimultaneousRequstsForABook() throws NullMemberException, NullBookException {
+
+        assertEquals("Number of requsters for book1 should be 3", 3, book1.getNumOfRequests());
+
     }
+
+    /**
+     * Test if <code>resolve</code>Adds <code>Member</code> to queue if someone already requested for the book
+     * and if the number of copies of that book is less than the total number of
+     * people making requset.
+     * @throws NullBookException
+     * @throws NullMemberException
+     */
     @Test
-    public void validatememberShouldReturnFalseifMemberisNotRegistered() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        Member member = new Student("ID-15-023", "Tosin Adesanya", 'M');
-        readersClub.register(member1);
-        assertFalse(readersClub.validateMember(member));
+    public void membersAreAddedToQueueIfBookAlreadyIsInRequest() throws NullBookException, NullMemberException {
+
+        tosin.borrowBook(book1);
+
+        chidi.borrowBook(book1);
+
+        daniel.borrowBook(book1);
+
+        daniel.borrowBook(book);
+
+        Andela.resolve(book1, tosin);
+
+        Andela.resolve(book1, chidi);
+
+        assertTrue(Andela.getRequestQueue().contains(chidi));
+
     }
+
+    /**
+     * test that members are removed from queue with prioroty
+     * @throws NullBookException
+     * @throws NullMemberException
+     */
     @Test
-    public void validateBookShouldReturnTrueifBookisinClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
-        readersClub.addBook(book, 20);
-        assertTrue(readersClub.validateBook(book));
-    }
-    @Test
-    public void validateBookShouldReturnFalseifBookisinNotClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
+    public void requsetIsgrantedBasedOnFIFO() throws NullBookException, NullMemberException {
+
+        ReaderClub Andela = new ReaderClub();
+
         Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
         Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
-        readersClub.addBook(book, 20);
-        assertFalse(readersClub.validateBook(book1));
+
+        Staff tosin = new Staff(Andela);
+        Staff chidi = new Staff(Andela);
+        Student daniel = new Student(Andela);
+
+        Andela.addBook(book, 20);
+        Andela.addBook(book1, 2);
+        tosin.borrowBook(book1);
+        chidi.borrowBook(book1);
+        daniel.borrowBook(book1);
+        daniel.borrowBook(book);
+
+        Andela.resolve(book1, daniel);
+        Andela.resolve(book1, chidi);
+        Andela.resolve(book1, tosin);
+        Andela.lendBook(book1);
+
+        assertFalse(Andela.getRequestQueue().contains(tosin));
     }
+    @Test
+    public void aRecordisCreatedForAMemberThatClubLendsBook() throws NullBookException, NullMemberException {
+
+        ReaderClub Andela = new ReaderClub();
+
+        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
+        Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+
+        Staff tosin = new Staff(Andela);
+        Staff chidi = new Staff(Andela);
+        Student daniel = new Student(Andela);
+
+        Andela.addBook(book, 20);
+        Andela.addBook(book1, 2);
+
+        tosin.borrowBook(book1);
+        chidi.borrowBook(book1);
+        daniel.borrowBook(book1);
+        daniel.borrowBook(book);
+
+        Andela.resolve(book1, daniel );
+        Andela.resolve(book1, chidi);
+        Andela.resolve(book1, tosin);
+
+        Andela.lendBook(book1);
+
+        assertEquals("", 1, Andela.getRecords().size());
+
+    }
+
+
+
 }

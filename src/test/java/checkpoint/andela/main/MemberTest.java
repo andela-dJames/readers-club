@@ -1,60 +1,79 @@
 package checkpoint.andela.main;
 
 
+import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
- * Created by Daniel James on 10/4/2015.
+ * A test for Member class
+ * @author Daniel James
  */
 public class MemberTest {
-    @Test
-    public void shouldReturnTrueForTwoMembersWithEqualProperties() {
-        Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        Member member1 = new Student("ID-15-006", "Nadaya Engesi", 'M');
 
-        assertTrue(member.equals(member1));
+    ReaderClub Andela = new ReaderClub();
+
+    Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
+
+    Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+
+    Book book2 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
+
+    Staff tosin = new Staff(Andela);
+
+    Staff chidi = new Staff(Andela);
+
+    Staff daniel = new Staff("ST-1001", "Daniel James");
+
+    /**
+     * Class to run before every method in test
+     * @throws Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        Andela.addBook(book, 20);
+        Andela.addBook(book1, 20);
+        tosin.borrowBook(book1);
 
     }
 
+    /**
+     * test to show that members are added to members list automatically
+     */
     @Test
-    public void shouldReturnFalseForTwoMembersWithEqualProperties() {
-        Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        Member member1 = new Student("ID-15-007", "Brice", 'M');
+    public void membersAreAutomaticallyAddedToClub() {
 
-        assertFalse(member.equals(member1));
+
+        assertEquals("members list should be 2", 2, Andela.getMembers().size());
+
     }
 
+    /**
+     * A tesst to show that only club members cab request for book
+     * @throws NullBookException
+     * @throws NullMemberException
+     */
     @Test
-    public void borrowBookShouldAddanewBookToMemberListOfBooks(){
-        Member member1 = new Student("ID-15-018", "Jeremy Johnson", 'M');
-        Book book = new Book("1005-ISBN-34", "The Theory of #TIA", "E");
-        member1.borrowBook(book);
-        assertTrue(member1.ownBook(book));
+    public void clubMembersCanRequstBook() throws NullBookException, NullMemberException {
+
+        assertTrue(book1.isInRequest());
     }
 
+    /**
+     * A test to show that only available books can be requested
+     * @throws NullMemberException
+     * @throws NullBookException
+     */
     @Test
-    public void returnBookShouldremoveaBookToMemberListOfBooks(){
-        Member member1 = new Student("ID-15-018", "Jeremy Johnson", 'M');
-        Book book = new Book("1005-ISBN-34", "The Theory of #TIA", "E");
-        member1.borrowBook(book);
-        member1.returnBook(book);
-        assertFalse(member1.ownBook(book));
-    }
-    @Test
-    public void makeRequestSetsBookInRequest() throws NullBookException, NullMemberException {
-        Member member1 = new Student("ID-15-018", "Jeremy Johnson", 'M');
-        Book book = new Book("1005-ISBN-34", "The Theory of #TIA", "E");
-        ReadersClub readersClub = new ReadersClub();
-        member1.makeRequest(member1, book);
-        readersClub.acknowledge(member1, book);
+    public void onlyAvailableBooksCanBeREquested() throws NullMemberException, NullBookException {
 
-        assertTrue(book.isInRequest());
+        tosin.borrowBook(book2);
+
+        assertFalse(book2.isInRequest());
 
     }
 
