@@ -8,7 +8,7 @@ import org.joda.time.DateTime;
  * @author Daniel James
  *@version  0.0.1 10/1/2015.
  */
-public class Request implements Comparable<Request> {
+public class Request {
     /**
      * The date a <code>Request</code> is made
      */
@@ -18,6 +18,8 @@ public class Request implements Comparable<Request> {
      */
     private Member member;
 
+    private String number;
+
     /**
      * creates an empty <code>Request</code>
      */
@@ -26,21 +28,21 @@ public class Request implements Comparable<Request> {
 
     /**
      * Creates a new <code>Request</code> with the following parameter
-     * @param member
+     * @param number of the member
      */
-    public Request(Member member) {
-        this.member = member;
+    public Request(String number) {
+        this.number = number;
         requestDate = DateTime.now();
     }
 
     /**
      * Creates a new <code>Request</code> with the following parameters
-     * @param member
-     * @param date
+     * @param num number of the member making request
+     * @param book the Book in request
      */
-    public Request(Member member, DateTime date) {
-        this(member);
-        requestDate = date;
+    public Request(String num, Book book) {
+        this(num);
+
     }
 
     public DateTime getRequestDate() {
@@ -51,23 +53,7 @@ public class Request implements Comparable<Request> {
         this.requestDate = requestDate;
     }
 
-    @Override
-    public int compareTo(Request request) {
-        if(this.getMember().isStaff() && request.getMember().isStaff()) {
-            return getRequestDate().compareTo(request.getRequestDate());
-        }
-        else if (this.getMember().isStudent() && request.getMember().isStudent()) {
-            return getRequestDate().compareTo(request.getRequestDate());
-        }
-        else if (this.getMember().isStaff() && request.getMember().isStudent()) {
-            return 1;
-        }
-        else if (this.getMember().isStudent() && request.getMember().isStaff()) {
-            return -1;
-        }
-        else return 0;
 
-    }
     /**
      * @return <code>Member</code> that initiated request
      */

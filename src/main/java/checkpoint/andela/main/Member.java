@@ -2,6 +2,7 @@ package checkpoint.andela.main;
 
 
 
+
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -12,6 +13,10 @@ import java.util.ArrayList;
  * @version 0.0.1 10/1/2015.
  */
 public class Member {
+
+    private int id;
+
+    private Club club;
     /**
      * member's full name
      */
@@ -40,19 +45,14 @@ public class Member {
      * members date of registration
      */
     private DateTime dateOfdeRegistration;
-    /**
-     * request made by a member of the club
-     */
-    private Request request;
-    /**
-     * list of books in the clubs bookstore/library
-     */
-    private ArrayList<Book> listOfBooks;
 
     /**
      * creates a new member
      */
-    public Member() {
+    public Member(Club club){
+
+        this.club = club;
+        club.addMember(this);
     }
     /**
      * Creates a member with this parameter
@@ -60,7 +60,7 @@ public class Member {
      */
     public Member(String number){
         this.number = number;
-        this.listOfBooks = new ArrayList<>();
+
     }
     /**
      * creates a staff with these parameters
@@ -162,58 +162,42 @@ public class Member {
         this.dateOfdeRegistration = dateOfdeRegistration;
     }
 
-    public ArrayList<Book> getListOfBooks() {
-        return listOfBooks;
-    }
-
-    public void setListOfBooks(ArrayList<Book> listOfBooks) {
-        this.listOfBooks = listOfBooks;
-    }
-
     public DateTime getCurrentTime(){
         return DateTime.now();
     }
 
-    public Book borrowBook(Book book){
-        listOfBooks.add(book);
-        return book;
+    public void borrowBook(Book book) throws NullBookException, NullMemberException{
+        club.borrowBook(book);
     }
 
-    public Book returnBook(Book book) {
-        listOfBooks.remove(book);
-        return book;
-    }
+    /**
+     * Member returns book to club.
+     * @param book
+     * @param id
+     */
+    public void returnBook(Book book, int id ) {
 
-    public boolean equals(Member member) {
-        return this.getNumber()==member.getNumber();
-    }
+        club.lendBook(book);
 
+    }
 
     public boolean isStaff(){
+
         return false;
     }
 
     public boolean isStudent() {
+
         return false;
     }
 
-    public boolean ownBook(Book book) {
-        if (listOfBooks.isEmpty())
-            return false;
-            else{
-        for (Book book1: listOfBooks) {
-            if (listOfBooks.contains(book)) {
-                return true;
-            }
-        }
-        }
-        return false;
+    public int getId() {
+
+        return id;
     }
-     public Request makeRequest(Member member, Book book) {
 
-         request = new Request(member,DateTime.now() );
+    public void setId(int id) {
 
-         return request;
-     }
-
+        this.id = id;
+    }
 }
