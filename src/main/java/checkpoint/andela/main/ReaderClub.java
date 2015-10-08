@@ -17,23 +17,33 @@ import java.util.Queue;
 public class ReaderClub implements Club{
 
     private Member member;
+
     private static boolean hasRequst;
 
     private ArrayList<Member> members;
+
     private ArrayList<Request> requests;
+
     private ArrayList<Staff> staffList;
+
     private ArrayList<Student> studentList;
+
     private ArrayList<Book> clubBooks;
+
     private ArrayList<Record> records;
+
     private Queue<Member> requestQueue;
 
 
     private int count =1;
+
     private DateTime regDate = DateTime.now();
+
     private Request request;
 
-   //private int memberPriority;
-
+    /**
+     * Implements <code>Comparator</code> to assign priority for members in the Queue
+     */
     public static Comparator<Member> memberPriority = new Comparator<Member>() {
         @Override
         public int compare(Member member, Member member1) {
@@ -50,19 +60,32 @@ public class ReaderClub implements Club{
         }
     };
 
+    /**
+     * Create a new reader club with all the necessary lists
+     */
     public ReaderClub() {
 
         members = new ArrayList<Member>();
+
         clubBooks = new ArrayList<Book>();
+
         requests = new ArrayList<Request>();
+
         staffList = new ArrayList<Staff>();
+
         studentList = new ArrayList<Student>();
+
         records = new ArrayList<Record>();
+
         requestQueue = new PriorityQueue<Member>(10, memberPriority);
 
     }
 
-
+    /**
+     * Adds a new member and sets the date of registration
+     * sets the Id of the new member
+     * @param member
+     */
     @Override
     public void addMember(Member member) {
 
@@ -73,6 +96,10 @@ public class ReaderClub implements Club{
 
     }
 
+    /**
+     * Adds member to corresponding club list, Staff/student
+     * @param member
+     */
     public void addToList(Member member) {
 
         if (members.contains(member)){
@@ -89,6 +116,12 @@ public class ReaderClub implements Club{
 
     }
 
+    /**
+     * Adds a new Book to the club with given parameters.
+     * @param book
+     * @param numberOfCopies
+     * @throws NullBookException
+     */
     @Override
     public void addBook(Book book, int numberOfCopies)  throws NullBookException {
 
@@ -104,35 +137,63 @@ public class ReaderClub implements Club{
         }
     }
 
+    /**
+     * Initiate a request for a book
+     * @param book
+     * @throws NullMemberException
+     * @throws NullBookException
+     */
     @Override
     public void borrowBook(Book book) throws NullMemberException, NullBookException {
 
         if (clubBooks.contains(book)) {
+
             book.setinRequest(true);
+
             count++;
+
             book.setNumOfRequests(book.getNumOfRequests() + 1);
         }
     }
 
+    /**
+     * lends a book from club books to Member and creates a new Record
+     * @param book
+     */
     @Override
     public void lendBook(Book book) {
+
         Member member = requestQueue.poll();
+
         int id = member.getId();
+
         Record record= new Record(book, id);
+
         records.add(record);
+
         int num = book.getNoOfCopies();
+
         book.setNoOfCopies(num - 1);
 
     }
 
+    /**
+     * gets the total number of request
+     * @return
+     */
     @Override
     public int getTotalRequst() {
 
         int total = requests.size();
+
         return total;
 
     }
 
+    /**
+     * Add member to Queue
+     * @param member
+     */
     @Override
     public void addToQ(Member member) {
 
@@ -140,15 +201,29 @@ public class ReaderClub implements Club{
 
     }
 
+    /**
+     * Member returns Book and the record is removed
+     * @param book
+     * @param id the Id of the member
+     */
     @Override
     public void returnBook(Book book, int id) {
 
         records.removeIf(record -> record.memberID == id );
+
         int num = book.getNumOfRequests();
+
         book.setNoOfCopies(num+1);
 
     }
 
+    /**
+     * Adds Member to Queue if the book has been requested
+     * @param book
+     * @param member
+     * @throws NullMemberException
+     * @throws NullBookException
+     */
     public void resolve(Book book, Member member) throws NullMemberException, NullBookException {
 
        if (book.isInRequest() && book.getNumOfRequests() > book.getNoOfCopies()){
