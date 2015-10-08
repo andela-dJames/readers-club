@@ -3,8 +3,6 @@ package checkpoint.andela.members;
 import checkpoint.andela.main.Club;
 import checkpoint.andela.main.Member;
 
-import java.util.ArrayList;
-
 /**
  * A Staff who is a member of the Readers Club
  * @author  Daniel James.
@@ -15,14 +13,13 @@ public class Staff extends Member {
      * The net pay of the Staff Member
      */
     private double netPay;
-
-    private ArrayList<Student> students;
-
     /**
      * creates a <code>Staff</code> member
      */
     public Staff(Club club) {
+
         super(club);
+
     }
     /**
      * Creates a <code>Staff</code> member with this parameter
@@ -30,7 +27,9 @@ public class Staff extends Member {
      * @param staffNumber the number of the staff
      */
     public Staff(String staffNumber) {
+
         super(staffNumber);
+
     }
 
     /**
@@ -39,7 +38,9 @@ public class Staff extends Member {
      * @param fullName the full name of the staff
      */
     public Staff(String staffNumber, String fullName) {
+
         super(staffNumber, fullName);
+
     }
     /**
      * creates a <code>Staff</code> with these parameters
@@ -48,7 +49,9 @@ public class Staff extends Member {
      * @param gender the staff's gender
      */
     public Staff(String staffNumber, String fullName, char gender) {
+
         super(staffNumber, fullName, gender);
+
     }
     /**
      * creates a <code>Staff</code> with these parameters
@@ -58,7 +61,9 @@ public class Staff extends Member {
      * @param dateOfBirth the date of birth of the staff member
      */
     public Staff(String staffNumber, String fullName, char gender, String dateOfBirth) {
+
         super(staffNumber, fullName, gender, dateOfBirth);
+
     }
     /**
      * creates a <code>Staff</code> with these parameters
@@ -69,15 +74,21 @@ public class Staff extends Member {
      * @param phoneNumber the staff's pone number
      */
     public Staff(String staffNumber, String fullName, char gender, String dateOfBirth, String phoneNumber) {
+
         super(staffNumber, fullName, gender, dateOfBirth, phoneNumber);
+
     }
 
     public double getNetPay() {
+
         return netPay;
+
     }
 
     public void setNetPay(double netPay) {
+
         this.netPay = netPay;
+
     }
 
     public void assignToStudents(Student student){
@@ -87,6 +98,8 @@ public class Staff extends Member {
      * @return <code>true</code> if member is staff
      */
     public boolean isStaff(){
+
         return true;
+
     }
 }

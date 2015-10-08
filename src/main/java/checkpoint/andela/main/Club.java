@@ -10,6 +10,7 @@ public interface Club {
     public void borrowBook (Book book) throws NullMemberException, NullBookException;
     public void lendBook(Book book, String num);
     public int getTotalRequst();
-    
+    public void addToQ (Member member);
+
 
 }
