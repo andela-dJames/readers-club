@@ -19,7 +19,7 @@ public class Main {
 	// write your code here
         Member member = new Member("1234", "daniel");
         Member member2 = new Member("1234", "daniel");
-        System.out.println(member.ownBook(bk));
+        //System.out.println(member.ownBook(bk));
     }
 
 

@@ -14,86 +14,49 @@ import static org.junit.Assert.assertTrue;
  * Created by Daniel James on 10/4/2015.
  */
 public class ReadersClubTests {
-    @Test
-    public void addBookShouldAddUpadateClubBooks() throws NullBookException{
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("123-isbn-001", "Oluwa Tosin");
-        book.setNoOfCopies(20);
-        int numOfcps = book.getNoOfCopies();
-        readersClub.addBook(book, 5);
-
-        assertEquals("addBook should add 5 copies to clubBooks", 25, book.getNoOfCopies());
-
-    }
 
     @Test
-    public void removeBookShouldReoveBookfromClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("123-isbn-001", "Michael Rosenberg");
-        book.setNoOfCopies(20);
-        int numOfcps = book.getNoOfCopies();
-        readersClub.addBook(book, 5);
-        readersClub.removeBook(book, 5);
+    public void addMemberShouldAddmemberToMembersList() throws MemberAlreadyexistExeption {
+        ReaderClub Andela = new ReaderClub();
+        Student pascal = new Student();
+        Student pascal2 = new Student();
 
-        assertEquals("addBook should add 5 copies to clubBooks", 20, book.getNoOfCopies());
+        ClubMembers AndelaClubMembers = new ClubMembers(Andela);
+        AndelaClubMembers.addMembers(pascal);
+        AndelaClubMembers.addMembers(pascal);
     }
 
     @Test
-    public void registerShoulAddNewStudentToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.getStudentMembers().contains(member1));
+    public void addBookShouldAddnewBookToClubBooks() {
+        ClubBooks AndelaClubBooks = new ClubBooks();
+        Book Book1 = new Book("ISBN-3456-YOU", "The End Of Days", "Michael Rosenberg");
+
+        AndelaClubBooks.addBook(Book1, 5);
+
+        assertTrue(AndelaClubBooks.getBooks().contains(Book1));
+    }
+    @Test
+    public void addBookShouldUpdateClubBooks() {
+        ClubBooks AndelaClubBooks = new ClubBooks();
+        Book Book1 = new Book("ISBN-3456-YOU", "The End Of Days", "Michael Rosenberg");
+
+        AndelaClubBooks.addBook(Book1, 5);
+        AndelaClubBooks.addBook(Book1, 5);
+
+        assertEquals("Book1 number of copies should be 10", 10, Book1.getNoOfCopies());
     }
 
     @Test
-    public void registerShoulAddNewStaffToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.getStaffmembers().contains(member1));
+    public void membersCanBeAddedToQueue(){
+        MembersQueue andelamembersQ = new MembersQueue();
+        Student pascal = new Student();
+        Staff pascal2 = new Staff();
+        andelamembersQ.addToQueue(pascal);
+        andelamembersQ.addToQueue(pascal2);
+
+        assertEquals("The queue size should be 2", 2, andelamembersQ.getMembers().size());
+
     }
 
-    @Test
-    public void registerShoulAddNewMemberToClub() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        Member member = new Student("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        readersClub.register(member);
-        assertTrue(readersClub.getClubmembers().contains(member1));
-        assertTrue(readersClub.getClubmembers().contains(member));
-        assertEquals("size of the club members should return 2", 2, readersClub.getClubmembers().size());
-    }
 
-    @Test
-    public void validatememberShouldReturnTrueifMemberisRegistered() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        readersClub.register(member1);
-        assertTrue(readersClub.validateMember(member1));
-    }
-    @Test
-    public void validatememberShouldReturnFalseifMemberisNotRegistered() throws NullMemberException {
-        ReadersClub readersClub = new ReadersClub();
-        Member member1 = new Staff("ID-15-006", "Nadaya Engesi", 'M');
-        Member member = new Student("ID-15-023", "Tosin Adesanya", 'M');
-        readersClub.register(member1);
-        assertFalse(readersClub.validateMember(member));
-    }
-    @Test
-    public void validateBookShouldReturnTrueifBookisinClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
-        readersClub.addBook(book, 20);
-        assertTrue(readersClub.validateBook(book));
-    }
-    @Test
-    public void validateBookShouldReturnFalseifBookisinNotClubBooks() throws NullBookException {
-        ReadersClub readersClub = new ReadersClub();
-        Book book = new Book("ISBN-OQW-456", "Once Upon A Time", "Obioma, Ofoamalu");
-        Book book1 = new Book("ISBN-EST-2345", "Diamonds Are Forever", "Grace Omotoso");
-        readersClub.addBook(book, 20);
-        assertFalse(readersClub.validateBook(book1));
-    }
 }

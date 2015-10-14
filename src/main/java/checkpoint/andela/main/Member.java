@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @version 0.0.1 10/1/2015.
  */
 public class Member {
+
+    private int id;
     /**
      * member's full name
      */
@@ -40,35 +42,24 @@ public class Member {
      * members date of registration
      */
     private DateTime dateOfdeRegistration;
-    /**
-     * request made by a member of the club
-     */
-    private Request request;
-    /**
-     * list of books in the clubs bookstore/library
-     */
-    private ArrayList<Book> listOfBooks;
-
-    /**
+       /**
      * creates a new member
      */
     public Member() {
     }
     /**
      * Creates a member with this parameter
-     * @param number the member's number.
+     * @param id the member's number.
      */
-    public Member(String number){
-        this.number = number;
-        this.listOfBooks = new ArrayList<>();
-    }
+    public Member(int id){
+        this.id = id;
+           }
     /**
      * creates a staff with these parameters
      * @param number the number of the member
      * @param fullName the full name of the member.
      */
     public Member(String number, String fullName) {
-        this(number);
         this.fullName = fullName;
     }
     /**
@@ -161,34 +152,6 @@ public class Member {
     public void setDateOfdeRegistration(DateTime dateOfdeRegistration) {
         this.dateOfdeRegistration = dateOfdeRegistration;
     }
-
-    public ArrayList<Book> getListOfBooks() {
-        return listOfBooks;
-    }
-
-    public void setListOfBooks(ArrayList<Book> listOfBooks) {
-        this.listOfBooks = listOfBooks;
-    }
-
-    public DateTime getCurrentTime(){
-        return DateTime.now();
-    }
-
-    public Book borrowBook(Book book){
-        listOfBooks.add(book);
-        return book;
-    }
-
-    public Book returnBook(Book book) {
-        listOfBooks.remove(book);
-        return book;
-    }
-
-    public boolean equals(Member member) {
-        return this.getNumber()==member.getNumber();
-    }
-
-
     public boolean isStaff(){
         return false;
     }
@@ -197,23 +160,11 @@ public class Member {
         return false;
     }
 
-    public boolean ownBook(Book book) {
-        if (listOfBooks.isEmpty())
-            return false;
-            else{
-        for (Book book1: listOfBooks) {
-            if (listOfBooks.contains(book)) {
-                return true;
-            }
-        }
-        }
-        return false;
+    public void setId(int id) {
+        this.id = id;
     }
-     public Request makeRequest(Member member, Book book) {
 
-         request = new Request(member,DateTime.now() );
-
-         return request;
-     }
-
+    public int getId() {
+        return id;
+    }
 }

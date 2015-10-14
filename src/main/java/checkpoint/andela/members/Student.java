@@ -20,13 +20,6 @@ public class Student extends Member {
     }
     /**
      * creates a <code>Student</code> with these parameters
-     * @param number the number of the Student.
-     */
-    public Student(String number){
-        super(number);
-    }
-    /**
-     * creates a <code>Student</code> with these parameters
      * @param number the number of the Student
      * @param fullName the full name of the Student
      */

@@ -237,42 +237,6 @@ public class ReadersClub {
      * @param member A registered member
      * @param book A Book in the club library
      */
-    public void acknowledge(Member member, Book book) throws NullBookException, NullMemberException {
-
-        bookRecords = new BookRecords(member, book);
-
-        int number = bookRecords.getNumOfRequesters() + 1;
-
-        bookRecords.setNumOfRequesters(number);
-
-        member.makeRequest(member, book);
-
-        book.setinRequest(true);
-    }
-
-    /**
-     * adds a request to the Priority queue if the book is in request by many members.
-     * @param book
-     * @param member
-     */
-    public void addRequest(Book book, Member member) {
-
-        if (book.isInRequest() && bookRecords.getNumOfRequesters() > book.getNoOfCopies()) {
-            requests.offer(member);
-        }
-        else
-            releaseBook(member, book);
-    }
-
-    /**
-     * releases a given book to a member
-     * @param member Member with request.
-     * @param book book in request
-     */
-    public void releaseBook(Member member, Book book) {
-
-       member.borrowBook(book);
-    }
     /**
      * Validates a club member
      * @param member a member to be validated
@@ -299,12 +263,6 @@ public class ReadersClub {
 
         return false;
     }
-
-    public void processRequest() {
-        Member member = requests.poll();
-        member.borrowBook(bookRecords.getBook());
-    }
-
     /**
      * A record of books requsted by members in a club
      */

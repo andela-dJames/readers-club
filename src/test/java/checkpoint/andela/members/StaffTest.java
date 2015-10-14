@@ -12,13 +12,13 @@ import static org.junit.Assert.assertTrue;
 public class StaffTest {
     @Test
     public void isStaffShouldReturnTrue(){
-        Member member = new Staff();
+        Staff member = new Staff();
         assertTrue(member.isStaff());
     }
 
     @Test
     public void isStudentShouldreturnFalse(){
-        Member member = new Staff();
+        Staff member = new Staff();
         assertFalse(member.isStudent());
     }
 }

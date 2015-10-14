@@ -20,7 +20,9 @@ public class StudentTest {
     }
     @Test
     public void isStaffShouldreturnfalse(){
-        Member student = new Student();
+        Student student = new Student();
         assertFalse(student.isStaff());
     }
+
+
 }

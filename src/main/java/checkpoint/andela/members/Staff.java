@@ -23,15 +23,6 @@ public class Staff extends Member {
     public Staff() {
     }
     /**
-     * Creates a <code>Staff</code> member with this parameter
-     * calls the Member super class
-     * @param staffNumber the number of the staff
-     */
-    public Staff(String staffNumber) {
-        super(staffNumber);
-    }
-
-    /**
      * creates a <code>Staff</code> with these parameters
      * @param staffNumber the number of the staff
      * @param fullName the full name of the staff
