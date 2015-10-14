@@ -23,7 +23,8 @@ public class ReadersClubTests {
 
         ClubMembers AndelaClubMembers = new ClubMembers(Andela);
         AndelaClubMembers.addMembers(pascal);
-        AndelaClubMembers.addMembers(pascal);
+
+        assertTrue(AndelaClubMembers.getMembers().contains(pascal));
     }
 
     @Test
@@ -55,6 +56,30 @@ public class ReadersClubTests {
         andelamembersQ.addToQueue(pascal2);
 
         assertEquals("The queue size should be 2", 2, andelamembersQ.getMembers().size());
+
+    }
+
+    @Test
+    public void membersAreGivenPriorityBasedOnRank() throws MemberAlreadyexistExeption {
+        ReaderClub Andela = new ReaderClub();
+        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+        MembersQueue andelamembersQ = new MembersQueue();
+        Member pascal = new Student();
+        Student marshal = new Student();
+        Student michael = new Student();
+        Member pascal2 = new Staff();
+
+        andelaClubmembers.addMembers(michael);
+        andelaClubmembers.addMembers(marshal);
+        andelaClubmembers.addMembers(pascal);
+        andelaClubmembers.addMembers(pascal2);
+
+        andelamembersQ.addToQueue(marshal);
+        andelamembersQ.addToQueue(michael);
+        andelamembersQ.addToQueue(pascal);
+        andelamembersQ.addToQueue(pascal2);
+
+        assertTrue(andelamembersQ.removeBypriority()==pascal2);
 
     }
 

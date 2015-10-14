@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class ClubBooks {
 
+    private Book book;
+
     private ArrayList<Book> books;
 
     public ClubBooks() {
@@ -22,6 +24,12 @@ public class ClubBooks {
             books.add(book);
             book.setNoOfCopies(copies);
         }
+    }
+
+    public void borrowBook(Book book){
+        this.book = book;
+
+
     }
 
     public ArrayList<Book> getBooks() {

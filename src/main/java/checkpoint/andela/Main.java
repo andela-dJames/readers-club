@@ -2,12 +2,11 @@ package checkpoint.andela;
 
 import checkpoint.andela.main.Book;
 import checkpoint.andela.main.Member;
-import checkpoint.andela.main.ReadersClub;
 
 public class Main {
 
     public static void main(String[] args) {
-        ReadersClub RC = new ReadersClub();
+        //ReadersClub RC = new ReadersClub();
         Book bk = new Book("12345");
         bk.setNoOfCopies(20);
         int x = bk.getNoOfCopies();

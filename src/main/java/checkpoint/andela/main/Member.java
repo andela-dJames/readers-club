@@ -1,10 +1,6 @@
 package checkpoint.andela.main;
 
-
-
 import org.joda.time.DateTime;
-
-import java.util.ArrayList;
 
 /**
  * Members of a given <code>ReadersClub</code>
@@ -12,7 +8,9 @@ import java.util.ArrayList;
  * @version 0.0.1 10/1/2015.
  */
 public class Member {
-
+    /**
+     * The id of a member
+     */
     private int id;
     /**
      * member's full name
@@ -35,13 +33,9 @@ public class Member {
      */
     private String number;
     /**
-     * members date of deregistration
-     */
-    private DateTime dateOfRegistration;
-    /**
      * members date of registration
      */
-    private DateTime dateOfdeRegistration;
+    private DateTime dateOfRegistration;
        /**
      * creates a new member
      */
@@ -145,13 +139,6 @@ public class Member {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public DateTime getDateOfdeRegistration() {
-        return dateOfdeRegistration;
-    }
-
-    public void setDateOfdeRegistration(DateTime dateOfdeRegistration) {
-        this.dateOfdeRegistration = dateOfdeRegistration;
-    }
     public boolean isStaff(){
         return false;
     }
