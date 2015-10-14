@@ -17,8 +17,7 @@ public class MembersQueue {
     }
 
     public void addToQueue(Member member) {
-        member = new Member();
-        members.add(member);
+        members.offer(member);
     }
 
     public void removeBypriority() {
@@ -28,22 +27,24 @@ public class MembersQueue {
     public PriorityQueue<Member> getMembers() {
         return members;
     }
-}
 
-class MembersPriority implements Comparator<Member>{
+    public class MembersPriority implements Comparator<Member>{
 
-    @Override
-    public int compare(Member member, Member member1) {
-        if (member.isStaff() && member1.isStaff()) {
-            return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+        @Override
+        public int compare(Member member, Member member1) {
+            if (member.isStaff() && member1.isStaff()) {
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+            }
+            if (member.isStaff() && member1.isStudent()) {
+                return -1;
+            }
+            if (member.isStudent() && member1.isStaff()) {
+                return 1;
+            } else
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
         }
-        if (member.isStaff() && member1.isStudent()) {
-            return -1;
-        }
-        if (member.isStudent() && member1.isStaff()) {
-            return 1;
-        } else
-            return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+
     }
-
 }
+
+
