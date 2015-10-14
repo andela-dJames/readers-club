@@ -8,7 +8,23 @@ import java.util.PriorityQueue;
  */
 public class MembersQueue {
 
-    public static MembersPriority membersPriority;
+    public static Comparator<Member> membersPriority = new Comparator<Member>(){
+
+        @Override
+        public int compare(Member member, Member member1) {
+            if (member.isStaff() && member1.isStaff()) {
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+            }
+            if (member.isStaff() && member1.isStudent()) {
+                return -1;
+            }
+            if (member.isStudent() && member1.isStaff()) {
+                return 1;
+            } else
+                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+        }
+
+    };
 
     private PriorityQueue<Member> members;
 
@@ -28,23 +44,7 @@ public class MembersQueue {
         return members;
     }
 
-    public static class MembersPriority implements Comparator<Member>{
 
-        @Override
-        public int compare(Member member, Member member1) {
-            if (member.isStaff() && member1.isStaff()) {
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
-            }
-            if (member.isStaff() && member1.isStudent()) {
-                return -1;
-            }
-            if (member.isStudent() && member1.isStaff()) {
-                return 1;
-            } else
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
-        }
-
-    }
 }
 
 
