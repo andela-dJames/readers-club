@@ -49,8 +49,8 @@ public class ReadersClubTests {
     @Test
     public void membersCanBeAddedToQueue(){
         MembersQueue andelamembersQ = new MembersQueue();
-        Student pascal = new Student();
-        Staff pascal2 = new Staff();
+        Member pascal = new Student();
+        Member pascal2 = new Staff();
         andelamembersQ.addToQueue(pascal);
         andelamembersQ.addToQueue(pascal2);
 

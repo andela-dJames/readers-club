@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
  */
 public class MembersQueue {
 
-    private MembersPriority membersPriority;
+    public static MembersPriority membersPriority;
 
     private PriorityQueue<Member> members;
 
@@ -28,7 +28,7 @@ public class MembersQueue {
         return members;
     }
 
-    public class MembersPriority implements Comparator<Member>{
+    public static class MembersPriority implements Comparator<Member>{
 
         @Override
         public int compare(Member member, Member member1) {
