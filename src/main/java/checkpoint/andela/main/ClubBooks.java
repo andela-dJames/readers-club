@@ -47,7 +47,6 @@ public class ClubBooks {
             book.setNoOfCopies(copies);
         }
     }
-
     /**
      * Initiates a boorow book Request by a member
      * @param member a requester
@@ -76,15 +75,9 @@ public class ClubBooks {
     public Member getRequester() {
         return getBookRecord().getRequester();
     }
-
-//    public int getNumberOfRequesters(Book book) {
-//
-//    }
-
     /**
      * Creates a record of books in clubBooks
      */
-
     private class BookRecords{
         private Book book;
         private Member requester;
