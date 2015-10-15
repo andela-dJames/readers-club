@@ -2,18 +2,11 @@ package checkpoint.andela.main;
 
 public class ReaderClub {
 
+
     public ReaderClub() {
     }
 
+    public void makeRequest(Book book) {
 
+    }
 }
-
- class BookRecord{
-
-     private int numberOfRequsets;
-
-     private boolean inRequset;
-
-     public BookRecord() {
-     }
- }

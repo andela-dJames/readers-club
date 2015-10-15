@@ -79,7 +79,16 @@ public class ReadersClubTests {
         andelamembersQ.addToQueue(pascal);
         andelamembersQ.addToQueue(pascal2);
 
-        assertTrue(andelamembersQ.removeBypriority()==pascal2);
+        assertTrue(andelamembersQ.removeBypriority() == pascal2);
+
+    }
+
+    @Test
+    public void makeRequestShouldMakeaBookToBeInRequest(){
+        ReaderClub Andela = new ReaderClub();
+        Book Book1 = new Book("ISBN-3456-YOU", "The End Of Days", "Michael Rosenberg");
+        Book Book2 = new Book("ISBN-1456-ERTY", "Paradoxical Thinking", "Michael Rosenberg");
+        //Andela.makeRequest(Book1);
 
     }
 
