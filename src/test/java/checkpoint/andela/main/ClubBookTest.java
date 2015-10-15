@@ -1,6 +1,7 @@
 package checkpoint.andela.main;
 
 import checkpoint.andela.members.Staff;
+import checkpoint.andela.members.Student;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -18,7 +19,7 @@ public class ClubBookTest {
         AndelaCL.addBook(Book1, 10);
         AndelaCL.borrowBook(Tosin, Book1);
 
-        assertTrue(AndelaCL.getBookRecord().getRequster() == Tosin);
+        assertTrue(AndelaCL.getBookRecord().getRequester() == Tosin);
     }
 
     @Test(expected = NullBookException.class)
@@ -29,7 +30,6 @@ public class ClubBookTest {
         ClubBooks AndelaCL = new ClubBooks();
         AndelaCL.addBook(Book1, 10);
         AndelaCL.borrowBook(Tosin, Book2);
-
 
     }
 }

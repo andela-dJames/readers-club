@@ -19,11 +19,14 @@ public class ClubBooks {
      */
     private BookRecords bookRecord;
 
+    private ArrayList<BookRecords> records;
+
     /**
      * Creates a new ClubBooks Object
      */
     public ClubBooks() {
         books = new ArrayList<Book>();
+        records = new ArrayList<BookRecords>();
     }
 
     /**
@@ -53,8 +56,10 @@ public class ClubBooks {
             throw new NullBookException();
         }
         else {
+
             bookRecord = new BookRecords(book);
-            bookRecord.setRequster(member);
+            bookRecord.setRequester(member);
+            records.add(bookRecord);
         }
     }
 
@@ -66,38 +71,42 @@ public class ClubBooks {
         return bookRecord;
     }
 
+//    public int getNumberOfRequesters(Book book) {
+//
+//    }
+
     /**
-     *
+     * Creates a record of books in clubBooks
      */
 
     public class BookRecords{
-        private Member requster;
+        private Book book;
+        private Member requester;
 
-        private boolean inRequest;
+        private int numberOfRequests;
 
         public BookRecords(Book bk) {
             book = bk;
         }
 
-        public Member getRequster() {
-            return requster;
+        public Member getRequester() {
+            return requester;
         }
 
-        public void setRequster(Member requster) {
-            this.requster = requster;
+        public void setRequester(Member requester) {
+            this.requester = requester;
+        }
+
+        public int getNumberOfRequests() {
+            return numberOfRequests;
+        }
+
+        public void setNumberOfRequests(int numberOfRequests) {
+            this.numberOfRequests = numberOfRequests;
+        }
+
+        public Book getBook() {
+            return book;
         }
     }
-
-    public class Requsters{
-        private int numOfRequest;
-
-        public int getNumOfRequest() {
-            return this.numOfRequest;
-        }
-
-        public void setNumOfRequest(int numOfRequest) {
-            this.numOfRequest = numOfRequest;
-        }
-    }
-
 }

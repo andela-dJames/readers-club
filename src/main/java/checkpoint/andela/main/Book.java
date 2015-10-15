@@ -54,9 +54,6 @@ public class Book {
         this(isbnNumber, name);
         this.author = author;
     }
-
-
-
     public String getBookName() {
         return bookName;
     }
