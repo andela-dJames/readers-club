@@ -1,6 +1,7 @@
 package checkpoint.andela.members;
 
 import checkpoint.andela.main.Member;
+import checkpoint.andela.main.ReaderClub;
 import org.junit.Test;
 import org.junit.Assert.*;
 
@@ -14,14 +15,26 @@ import static org.junit.Assert.assertTrue;
  */
 public class StudentTest {
     @Test
-    public void isStudentShouldReturnTrue(){
-        Student student = new Student();
-        assertTrue(student.isStudent());
+    public void isStudentShouldReturnTrue() {
+
+        ReaderClub Andela = new ReaderClub();
+        Student prosper = new Student(Andela);
+
+        assertTrue(prosper.isStudent());
     }
     @Test
+<<<<<<< HEAD
     public void isStaffShouldreturnfalse(){
         Student student = new Student();
         assertFalse(student.isStaff());
+=======
+    public void isStaffShouldreturnfalse() {
+
+        ReaderClub Andela = new ReaderClub();
+        Student prosper = new Student(Andela);
+
+        assertFalse(prosper.isStaff());
+>>>>>>> 3d90b247ae6a5f5b27f982794852d48dcc8926e0
     }
 
 

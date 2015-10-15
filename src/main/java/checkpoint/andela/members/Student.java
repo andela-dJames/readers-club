@@ -1,5 +1,6 @@
 package checkpoint.andela.members;
 
+import checkpoint.andela.main.Club;
 import checkpoint.andela.main.Member;
 
 /**
@@ -15,8 +16,9 @@ public class Student extends Member {
     /**
      * creates a <code>Student</code> member
      */
-    public Student(){
+    public Student(Club club){
 
+        super(club);
     }
     /**
      * creates a <code>Student</code> with these parameters

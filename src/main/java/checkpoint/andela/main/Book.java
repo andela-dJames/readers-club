@@ -23,7 +23,11 @@ public class Book {
      */
     private String iSBN;
 
-    public Book() {
+    private int numOfRequests;
+
+    private Club club;
+    public Book(Club club) {
+        this.club = club;
     }
 
     /**
@@ -87,4 +91,11 @@ public class Book {
     }
 
 
+    public int getNumOfRequests() {
+        return numOfRequests;
+    }
+
+    public void setNumOfRequests(int numOfRequests) {
+        this.numOfRequests = numOfRequests;
+    }
 }

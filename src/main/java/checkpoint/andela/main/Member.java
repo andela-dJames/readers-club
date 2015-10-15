@@ -1,5 +1,4 @@
 package checkpoint.andela.main;
-
 import org.joda.time.DateTime;
 
 /**
@@ -8,6 +7,10 @@ import org.joda.time.DateTime;
  * @version 0.0.1 10/1/2015.
  */
 public class Member {
+
+    private int id;
+
+    private Club club;
     /**
      * The id of a member
      */
@@ -36,11 +39,6 @@ public class Member {
      * members date of registration
      */
     private DateTime dateOfRegistration;
-       /**
-     * creates a new member
-     */
-    public Member() {
-    }
     /**
      * Creates a member with this parameter
      * @param id the member's number.
@@ -138,20 +136,32 @@ public class Member {
     public void setDateOfRegistration(DateTime dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
+    /**
+     * Member returns book to club.
+     * @param book
+     * @param id
+     */
+    public void returnBook(Book book, int id ) {
+
+        club.lendBook(book);
+
+    }
 
     public boolean isStaff(){
+
         return false;
     }
 
     public boolean isStudent() {
-        return false;
+
+
+    public int getId() {
+
+        return id;
     }
 
     public void setId(int id) {
-        this.id = id;
-    }
 
-    public int getId() {
-        return id;
+        this.id = id;
     }
 }
