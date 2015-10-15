@@ -18,7 +18,7 @@ public class StudentTest {
 
     public void isStaffShouldreturnfalse(){
         Student student = new Student();
-        assertFalse(student.isStaff());
+        assertTrue(student.isStudent());
 
     }
 
