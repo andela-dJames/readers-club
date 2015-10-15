@@ -1,5 +1,8 @@
 package checkpoint.andela.main;
 
+import exceptions.NullBookException;
+import exceptions.NullMemberException;
+
 import java.util.ArrayList;
 
 /**
@@ -67,8 +70,11 @@ public class ClubBooks {
         return books;
     }
 
-    public BookRecords getBookRecord() {
+    private BookRecords getBookRecord() {
         return bookRecord;
+    }
+    public Member getRequester() {
+        return getBookRecord().getRequester();
     }
 
 //    public int getNumberOfRequesters(Book book) {
@@ -79,7 +85,7 @@ public class ClubBooks {
      * Creates a record of books in clubBooks
      */
 
-    public class BookRecords{
+    private class BookRecords{
         private Book book;
         private Member requester;
 

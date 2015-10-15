@@ -1,9 +1,6 @@
 package checkpoint.andela.members;
 
-import checkpoint.andela.main.Member;
-import checkpoint.andela.main.ReaderClub;
 import org.junit.Test;
-import org.junit.Assert.*;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

@@ -1,5 +1,6 @@
 package checkpoint.andela.main;
 
+import exceptions.MemberAlreadyexistExeption;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
@@ -10,18 +11,16 @@ import java.util.ArrayList;
 public class ClubMembers {
     private ArrayList<Member> members;
 
-    private ReaderClub readerClub;
 
     private int memberID;
 
     private int count;
 
-    public ClubMembers(ReaderClub readerClub) {
-        this.readerClub = readerClub;
+    public ClubMembers() {
         members = new ArrayList<Member>();
     }
 
-    public void addMembers(Member member) throws MemberAlreadyexistExeption{
+    public void addMembers(Member member) throws MemberAlreadyexistExeption {
         if (members.contains(member)) {
             throw new MemberAlreadyexistExeption();
         }

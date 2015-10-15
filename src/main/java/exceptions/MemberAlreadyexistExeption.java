@@ -1,4 +1,4 @@
-package checkpoint.andela.main;
+package exceptions;
 
 /**
  * Created by Daniel James on 10/14/2015.
