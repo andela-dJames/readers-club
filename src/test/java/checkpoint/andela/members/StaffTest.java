@@ -12,23 +12,14 @@ import static org.junit.Assert.assertTrue;
 public class StaffTest {
 
     @Test
-    public void isStaffShouldReturnTrue() {
-
-        ReaderClub Andela = new ReaderClub();
-        Staff tosin = new Staff(Andela);
-        Staff chidi = new Staff(Andela);
-
-        assertTrue(tosin.isStaff());
+    public void isStaffShouldReturnTrue(){
+        Staff member = new Staff();
+        assertTrue(member.isStaff());
     }
 
     @Test
     public void isStudentShouldreturnFalse() {
-
-        ReaderClub Andela = new ReaderClub();
-        Staff tosin = new Staff(Andela);
-        Staff chidi = new Staff(Andela);
-
-        assertFalse(tosin.isStudent());
+        Staff member = new Staff();
+        assertFalse(member.isStudent());
     }
-
 }

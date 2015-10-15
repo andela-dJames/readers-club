@@ -1,11 +1,5 @@
 package checkpoint.andela.main;
-
-
-
-
 import org.joda.time.DateTime;
-
-import java.util.ArrayList;
 
 /**
  * Members of a given <code>ReadersClub</code>
@@ -13,10 +7,10 @@ import java.util.ArrayList;
  * @version 0.0.1 10/1/2015.
  */
 public class Member {
-
+    /**
+     * The id of a member
+     */
     private int id;
-
-    private Club club;
     /**
      * member's full name
      */
@@ -38,65 +32,63 @@ public class Member {
      */
     private String number;
     /**
-     * members date of deregistration
-     */
-    private DateTime dateOfRegistration;
-    /**
      * members date of registration
      */
-    private DateTime dateOfdeRegistration;
+    private DateTime dateOfRegistration;
 
-    /**
-     * creates a new member
-     */
-    public Member(Club club){
-
-        this.club = club;
-        club.addMember(this);
+    public Member() {
     }
+
     /**
      * Creates a member with this parameter
-     * @param number the member's number.
+     *
+     * @param id the member's number.
      */
-    public Member(String number){
-        this.number = number;
-
+    public Member(int id) {
+        this.id = id;
     }
+
     /**
      * creates a staff with these parameters
-     * @param number the number of the member
+     *
+     * @param number   the number of the member
      * @param fullName the full name of the member.
      */
     public Member(String number, String fullName) {
-        this(number);
         this.fullName = fullName;
     }
+
     /**
      * creates a staff with these parameters
-     * @param number the number of the member
+     *
+     * @param number   the number of the member
      * @param fullName the full name of the member
-     * @param gender    the gender of the member.
+     * @param gender   the gender of the member.
      */
     public Member(String number, String fullName, char gender) {
         this(number, fullName);
         this.gender = gender;
     }
+
     /**
      * creates a staff with these parameters
-     * @param number the number of the member
-     * @param fullName the full name of the member
-     * @param gender    the gender of the member
+     *
+     * @param number      the number of the member
+     * @param fullName    the full name of the member
+     * @param gender      the gender of the member
      * @param dateOfBirth the member's date of birth
      */
     public Member(String number, String fullName, char gender, String dateOfBirth) {
         this(number, fullName, gender);
         this.dateOfBirth = dateOfBirth;
     }
+
     /**
      * creates a member with these parameters
-     * @param number the number of the member
-     * @param fullName the full name of the member
-     * @param gender    the gender of the member
+     *
+     * @param number      the number of the member
+     * @param fullName    the full name of the member
+     * @param gender      the gender of the member
      * @param dateOfBirth the member's date of birth
      * @param phoneNumber the member's phone number
      */
@@ -147,57 +139,27 @@ public class Member {
 
     public DateTime getDateOfRegistration() {
 
-        return dateOfRegistration ;
+        return dateOfRegistration;
     }
 
     public void setDateOfRegistration(DateTime dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
 
-    public DateTime getDateOfdeRegistration() {
-        return dateOfdeRegistration;
-    }
-
-    public void setDateOfdeRegistration(DateTime dateOfdeRegistration) {
-        this.dateOfdeRegistration = dateOfdeRegistration;
-    }
-
-    public DateTime getCurrentTime(){
-        return DateTime.now();
-    }
-
-    public void borrowBook(Book book) throws NullBookException, NullMemberException{
-        club.borrowBook(book);
-    }
-
-    /**
-     * Member returns book to club.
-     * @param book
-     * @param id
-     */
-    public void returnBook(Book book, int id ) {
-
-        club.lendBook(book);
-
-    }
-
-    public boolean isStaff(){
+    public boolean isStaff() {
 
         return false;
     }
 
     public boolean isStudent() {
-
         return false;
     }
 
     public int getId() {
-
         return id;
     }
 
     public void setId(int id) {
-
         this.id = id;
     }
 }

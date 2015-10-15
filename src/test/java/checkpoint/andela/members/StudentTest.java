@@ -15,19 +15,11 @@ import static org.junit.Assert.assertTrue;
  */
 public class StudentTest {
     @Test
-    public void isStudentShouldReturnTrue() {
 
-        ReaderClub Andela = new ReaderClub();
-        Student prosper = new Student(Andela);
+    public void isStaffShouldreturnfalse(){
+        Student student = new Student();
+        assertFalse(student.isStaff());
 
-        assertTrue(prosper.isStudent());
     }
-    @Test
-    public void isStaffShouldreturnfalse() {
 
-        ReaderClub Andela = new ReaderClub();
-        Student prosper = new Student(Andela);
-
-        assertFalse(prosper.isStaff());
-    }
 }

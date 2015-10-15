@@ -13,23 +13,8 @@ public class Staff extends Member {
      * The net pay of the Staff Member
      */
     private double netPay;
-    /**
-     * creates a <code>Staff</code> member
-     */
-    public Staff(Club club) {
 
-        super(club);
-
-    }
-    /**
-     * Creates a <code>Staff</code> member with this parameter
-     * calls the Member super class
-     * @param staffNumber the number of the staff
-     */
-    public Staff(String staffNumber) {
-
-        super(staffNumber);
-
+    public Staff() {
     }
 
     /**
