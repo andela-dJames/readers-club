@@ -13,13 +13,12 @@ public class Student extends Member {
      * the class of the student in a <code>ReadersClub</code>
      */
     private String studentClasss;
-    /**
-     * creates a <code>Student</code> member
-     */
-    public Student(Club club){
 
-        super(club);
+    public Student() {
+
     }
+
+
     /**
      * creates a <code>Student</code> with these parameters
      * @param number the number of the Student

@@ -13,13 +13,8 @@ public class Staff extends Member {
      * The net pay of the Staff Member
      */
     private double netPay;
-    /**
-     * creates a <code>Staff</code> member
-     */
-    public Staff(Club club) {
 
-        super(club);
-
+    public Staff() {
     }
 
     /**
