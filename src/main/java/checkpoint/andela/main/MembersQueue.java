@@ -17,7 +17,7 @@ public class MembersQueue {
         @Override
         public int compare(Member member, Member member1) {
             if (member.isStaff() && member1.isStaff()) {
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+                return (member.getId() - member1.getId());
             }
             if (member.isStaff() && member1.isStudent()) {
                 return -1;
@@ -25,9 +25,8 @@ public class MembersQueue {
             if (member.isStudent() && member1.isStaff()) {
                 return 1;
             } else
-                return member.getDateOfRegistration().compareTo(member1.getDateOfRegistration());
+                return (member.getId() - member1.getId());
         }
-
     };
     /**
      * A queue of members in a list
