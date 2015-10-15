@@ -1,27 +1,34 @@
 package checkpoint.andela.main;
 
+import exceptions.MemberAlreadyexistExeption;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
 /**
- * Created by Daniel James on 10/13/2015.
+ * ClubMembers Class for manipulating club members
  */
 public class ClubMembers {
+    /**
+     * An array list of members.
+     */
     private ArrayList<Member> members;
-
-    private ReaderClub readerClub;
-
+    /**
+     * the ID of a member
+     */
     private int memberID;
-
     private int count;
 
-    public ClubMembers(ReaderClub readerClub) {
-        this.readerClub = readerClub;
+    public ClubMembers() {
         members = new ArrayList<Member>();
     }
 
-    public void addMembers(Member member) throws MemberAlreadyexistExeption{
+    /**
+     * Adds members to Club list
+     * @param member tobe added
+     * @throws MemberAlreadyexistExeption
+     */
+    public void addMembers(Member member) throws MemberAlreadyexistExeption {
         if (members.contains(member)) {
             throw new MemberAlreadyexistExeption();
         }
@@ -37,6 +44,10 @@ public class ClubMembers {
         return members;
     }
 
+    /**
+     * Sets the Id of a member
+     * @param member member of a club
+     */
     private void setMemberID(Member member) {
         member.setId(count);
         count++;

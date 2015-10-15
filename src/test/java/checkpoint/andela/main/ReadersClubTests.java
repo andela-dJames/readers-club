@@ -2,6 +2,7 @@ package checkpoint.andela.main;
 
 import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
+import exceptions.MemberAlreadyexistExeption;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,11 +17,10 @@ public class ReadersClubTests {
 
     @Test
     public void addMemberShouldAddmemberToMembersList() throws MemberAlreadyexistExeption {
-        ReaderClub Andela = new ReaderClub();
         Student pascal = new Student();
         Student pascal2 = new Student();
 
-        ClubMembers AndelaClubMembers = new ClubMembers(Andela);
+        ClubMembers AndelaClubMembers = new ClubMembers();
         AndelaClubMembers.addMembers(pascal);
 
         assertTrue(AndelaClubMembers.getMembers().contains(pascal));
@@ -60,8 +60,8 @@ public class ReadersClubTests {
 
     @Test
     public void membersAreGivenPriorityBasedOnRank() throws MemberAlreadyexistExeption {
-        ReaderClub Andela = new ReaderClub();
-        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+
+        ClubMembers andelaClubmembers = new ClubMembers();
         MembersQueue andelamembersQ = new MembersQueue();
         Member pascal = new Student();
         Student marshal = new Student();
@@ -84,8 +84,7 @@ public class ReadersClubTests {
 
     @Test
     public void membersAreGivenPriorityBasedOnTimeOfRegistration() throws MemberAlreadyexistExeption {
-        ReaderClub Andela = new ReaderClub();
-        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+        ClubMembers andelaClubmembers = new ClubMembers();
         MembersQueue andelamembersQ = new MembersQueue();
         Member pascal = new Student();
         Student marshal = new Student();
@@ -111,8 +110,8 @@ public class ReadersClubTests {
 
     @Test
     public void membersAreGivenPriorityBasedOnTimeOfEntry() throws MemberAlreadyexistExeption {
-        ReaderClub Andela = new ReaderClub();
-        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+
+        ClubMembers andelaClubmembers = new ClubMembers();
         MembersQueue andelamembersQ = new MembersQueue();
         Member pascal = new Student();
         Student marshal = new Student();
@@ -132,7 +131,7 @@ public class ReadersClubTests {
         andelamembersQ.addToQueue(prosper);
         andelamembersQ.addToQueue(pascal2);
 
-        assertTrue("The top of the queue should be Prosper",andelamembersQ.removeBypriority() == prosper);
+        assertTrue("The top of the queue should be Prosper", andelamembersQ.removeBypriority() == prosper);
 
     }
 

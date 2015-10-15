@@ -1,5 +1,8 @@
 package checkpoint.andela.main;
 
+import exceptions.NullBookException;
+import exceptions.NullMemberException;
+
 import java.util.ArrayList;
 
 /**
@@ -44,7 +47,6 @@ public class ClubBooks {
             book.setNoOfCopies(copies);
         }
     }
-
     /**
      * Initiates a boorow book Request by a member
      * @param member a requester
@@ -67,19 +69,16 @@ public class ClubBooks {
         return books;
     }
 
-    public BookRecords getBookRecord() {
+    private BookRecords getBookRecord() {
         return bookRecord;
     }
-
-//    public int getNumberOfRequesters(Book book) {
-//
-//    }
-
+    public Member getRequester() {
+        return getBookRecord().getRequester();
+    }
     /**
      * Creates a record of books in clubBooks
      */
-
-    public class BookRecords{
+    private class BookRecords{
         private Book book;
         private Member requester;
 
