@@ -12,6 +12,17 @@ import static org.junit.Assert.assertTrue;
 public class StaffTest {
 
     @Test
+<<<<<<< HEAD
+    public void isStaffShouldReturnTrue(){
+        Staff member = new Staff();
+        assertTrue(member.isStaff());
+    }
+
+    @Test
+    public void isStudentShouldreturnFalse(){
+        Staff member = new Staff();
+        assertFalse(member.isStudent());
+=======
     public void isStaffShouldReturnTrue() {
 
         ReaderClub Andela = new ReaderClub();
@@ -29,6 +40,7 @@ public class StaffTest {
         Staff chidi = new Staff(Andela);
 
         assertFalse(tosin.isStudent());
+>>>>>>> 3d90b247ae6a5f5b27f982794852d48dcc8926e0
     }
 
 }

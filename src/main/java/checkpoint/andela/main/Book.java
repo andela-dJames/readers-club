@@ -22,10 +22,6 @@ public class Book {
      * The international standard number of a book.
      */
     private String iSBN;
-    /**
-     * True if a book is in request
-     */
-    private boolean inRequest;
 
     private int numOfRequests;
 
@@ -62,9 +58,6 @@ public class Book {
         this(isbnNumber, name);
         this.author = author;
     }
-
-
-
     public String getBookName() {
         return bookName;
     }
@@ -97,13 +90,6 @@ public class Book {
         this.iSBN = iSBN;
     }
 
-    public void setinRequest(boolean inRequest){
-        this.inRequest = inRequest;
-    }
-
-    public boolean isInRequest(){
-        return inRequest;
-    }
 
     public int getNumOfRequests() {
         return numOfRequests;

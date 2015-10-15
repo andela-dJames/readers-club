@@ -1,11 +1,5 @@
 package checkpoint.andela.main;
-
-
-
-
 import org.joda.time.DateTime;
-
-import java.util.ArrayList;
 
 /**
  * Members of a given <code>ReadersClub</code>
@@ -17,6 +11,10 @@ public class Member {
     private int id;
 
     private Club club;
+    /**
+     * The id of a member
+     */
+    private int id;
     /**
      * member's full name
      */
@@ -38,37 +36,22 @@ public class Member {
      */
     private String number;
     /**
-     * members date of deregistration
+     * members date of registration
      */
     private DateTime dateOfRegistration;
     /**
-     * members date of registration
-     */
-    private DateTime dateOfdeRegistration;
-
-    /**
-     * creates a new member
-     */
-    public Member(Club club){
-
-        this.club = club;
-        club.addMember(this);
-    }
-    /**
      * Creates a member with this parameter
-     * @param number the member's number.
+     * @param id the member's number.
      */
-    public Member(String number){
-        this.number = number;
-
-    }
+    public Member(int id){
+        this.id = id;
+           }
     /**
      * creates a staff with these parameters
      * @param number the number of the member
      * @param fullName the full name of the member.
      */
     public Member(String number, String fullName) {
-        this(number);
         this.fullName = fullName;
     }
     /**
@@ -153,23 +136,6 @@ public class Member {
     public void setDateOfRegistration(DateTime dateOfRegistration) {
         this.dateOfRegistration = dateOfRegistration;
     }
-
-    public DateTime getDateOfdeRegistration() {
-        return dateOfdeRegistration;
-    }
-
-    public void setDateOfdeRegistration(DateTime dateOfdeRegistration) {
-        this.dateOfdeRegistration = dateOfdeRegistration;
-    }
-
-    public DateTime getCurrentTime(){
-        return DateTime.now();
-    }
-
-    public void borrowBook(Book book) throws NullBookException, NullMemberException{
-        club.borrowBook(book);
-    }
-
     /**
      * Member returns book to club.
      * @param book
@@ -188,8 +154,6 @@ public class Member {
 
     public boolean isStudent() {
 
-        return false;
-    }
 
     public int getId() {
 
