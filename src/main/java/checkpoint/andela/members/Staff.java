@@ -1,6 +1,4 @@
 package checkpoint.andela.members;
-
-import checkpoint.andela.main.Club;
 import checkpoint.andela.main.Member;
 
 /**

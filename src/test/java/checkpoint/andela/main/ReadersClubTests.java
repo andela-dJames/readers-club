@@ -2,10 +2,7 @@ package checkpoint.andela.main;
 
 import checkpoint.andela.members.Staff;
 import checkpoint.andela.members.Student;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -83,6 +80,59 @@ public class ReadersClubTests {
 
         assertTrue(andelamembersQ.removeBypriority() == pascal2);
 
+    }
+
+    @Test
+    public void membersAreGivenPriorityBasedOnTimeOfRegistration() throws MemberAlreadyexistExeption {
+        ReaderClub Andela = new ReaderClub();
+        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+        MembersQueue andelamembersQ = new MembersQueue();
+        Member pascal = new Student();
+        Student marshal = new Student();
+        Student michael = new Student();
+        Member pascal2 = new Staff();
+        Member prosper = new Staff();
+
+        andelaClubmembers.addMembers(michael);
+        andelaClubmembers.addMembers(marshal);
+        andelaClubmembers.addMembers(pascal);
+        andelaClubmembers.addMembers(prosper);
+        andelaClubmembers.addMembers(pascal2);
+
+        andelamembersQ.addToQueue(marshal);
+        andelamembersQ.addToQueue(michael);
+        andelamembersQ.addToQueue(pascal);
+        andelamembersQ.addToQueue(prosper);
+        andelamembersQ.addToQueue(pascal2);
+
+        assertFalse("The top of the queue should be Prosper", andelamembersQ.removeBypriority() == pascal2);
+
+    }
+
+    @Test
+    public void membersAreGivenPriorityBasedOnTimeOfEntry() throws MemberAlreadyexistExeption {
+        ReaderClub Andela = new ReaderClub();
+        ClubMembers andelaClubmembers = new ClubMembers(Andela);
+        MembersQueue andelamembersQ = new MembersQueue();
+        Member pascal = new Student();
+        Student marshal = new Student();
+        Student michael = new Student();
+        Member pascal2 = new Staff();
+        Member prosper = new Staff();
+
+        andelaClubmembers.addMembers(michael);
+        andelaClubmembers.addMembers(marshal);
+        andelaClubmembers.addMembers(pascal);
+        andelaClubmembers.addMembers(prosper);
+        andelaClubmembers.addMembers(pascal2);
+
+        andelamembersQ.addToQueue(marshal);
+        andelamembersQ.addToQueue(michael);
+        andelamembersQ.addToQueue(pascal);
+        andelamembersQ.addToQueue(prosper);
+        andelamembersQ.addToQueue(pascal2);
+
+        assertTrue("The top of the queue should be Prosper",andelamembersQ.removeBypriority() == prosper);
 
     }
 

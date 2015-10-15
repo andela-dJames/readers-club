@@ -17,9 +17,5 @@ public class StaffTest {
         assertTrue(member.isStaff());
     }
 
-    @Test
-    public void isStudentShouldreturnFalse() {
-        Staff member = new Staff();
-        assertFalse(member.isStudent());
-    }
+
 }

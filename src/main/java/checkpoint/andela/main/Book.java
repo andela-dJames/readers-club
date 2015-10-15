@@ -25,9 +25,7 @@ public class Book {
 
     private int numOfRequests;
 
-    private Club club;
-    public Book(Club club) {
-        this.club = club;
+    public Book() {
     }
 
     /**
