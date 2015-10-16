@@ -1,7 +1,7 @@
 package checkpoint.andela.main;
 
 import checkpoint.andela.members.Student;
-import exceptions.MemberAlreadyexistExeption;
+import checkpoint.andela.exceptions.MemberAlreadyexistExeption;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
