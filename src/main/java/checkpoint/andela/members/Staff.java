@@ -14,14 +14,12 @@ public class Staff extends Member {
 
     public Staff() {
     }
-
     /**
      * creates a <code>Staff</code> with these parameters
      * @param staffNumber the number of the staff
      * @param fullName the full name of the staff
      */
     public Staff(String staffNumber, String fullName) {
-
         super(staffNumber, fullName);
 
     }
@@ -32,9 +30,7 @@ public class Staff extends Member {
      * @param gender the staff's gender
      */
     public Staff(String staffNumber, String fullName, char gender) {
-
         super(staffNumber, fullName, gender);
-
     }
     /**
      * creates a <code>Staff</code> with these parameters
@@ -44,9 +40,7 @@ public class Staff extends Member {
      * @param dateOfBirth the date of birth of the staff member
      */
     public Staff(String staffNumber, String fullName, char gender, String dateOfBirth) {
-
         super(staffNumber, fullName, gender, dateOfBirth);
-
     }
     /**
      * creates a <code>Staff</code> with these parameters
@@ -57,32 +51,23 @@ public class Staff extends Member {
      * @param phoneNumber the staff's pone number
      */
     public Staff(String staffNumber, String fullName, char gender, String dateOfBirth, String phoneNumber) {
-
         super(staffNumber, fullName, gender, dateOfBirth, phoneNumber);
-
     }
 
     public double getNetPay() {
-
         return netPay;
-
     }
 
     public void setNetPay(double netPay) {
-
         this.netPay = netPay;
-
     }
 
     public void assignToStudents(Student student){
-
     }
     /**
      * @return <code>true</code> if member is staff
      */
     public boolean isStaff(){
-
         return true;
-
     }
 }

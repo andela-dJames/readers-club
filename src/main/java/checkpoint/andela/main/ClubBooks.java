@@ -79,9 +79,17 @@ public class ClubBooks {
      * Creates a record of books in clubBooks
      */
     private class BookRecords{
+        /**
+         * A book
+         */
         private Book book;
+        /**
+         * A member who requsts for book
+         */
         private Member requester;
-
+        /**
+         * the number of requests
+         */
         private int numberOfRequests;
 
         public BookRecords(Book bk) {
