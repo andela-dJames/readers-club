@@ -43,7 +43,6 @@ public class ClubMembers {
     public ArrayList<Member> getMembers() {
         return members;
     }
-
     /**
      * Sets the Id of a member
      * @param member member of a club
@@ -51,6 +50,9 @@ public class ClubMembers {
     private void setMemberID(Member member) {
         member.setId(count);
         count++;
+    }
 
+    public boolean contains(Member member){
+        return members.contains(member);
     }
 }

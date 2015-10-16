@@ -1,5 +1,6 @@
 package checkpoint.andela.main;
 
+
 /**
  * A Book class
  * @author  Daniel James
@@ -27,7 +28,6 @@ public class Book {
 
     public Book() {
     }
-
     /**
      * Creates a new book with the following
      * @param isbnNumber the international standard number of a book.
@@ -45,7 +45,6 @@ public class Book {
         this(isbnNumber);
         bookName = name;
     }
-
     /**
      * cretes a new <code>Book</code> with following parameters
      * @param isbnNumber the international standard number of a book.
@@ -87,7 +86,6 @@ public class Book {
     public void setiSBN(String iSBN) {
         this.iSBN = iSBN;
     }
-
 
     public int getNumOfRequests() {
         return numOfRequests;
