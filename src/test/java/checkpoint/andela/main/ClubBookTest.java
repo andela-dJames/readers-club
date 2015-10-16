@@ -40,7 +40,7 @@ public class ClubBookTest {
 
         AndelaClubBooks.addBook(Book1, 5);
 
-        assertTrue(AndelaClubBooks.getBooks().contains(Book1));
+        assertTrue(AndelaClubBooks.contains(Book1));
     }
     @Test
     public void addBookShouldUpdateClubBooks() {

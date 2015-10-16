@@ -60,6 +60,10 @@ public class MembersQueue {
         return members;
     }
 
+    public boolean contains(Member member) {
+        return members.contains(member);
+    }
+
 }
 
 

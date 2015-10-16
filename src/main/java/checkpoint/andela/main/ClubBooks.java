@@ -72,9 +72,15 @@ public class ClubBooks {
     private BookRecords getBookRecord() {
         return bookRecord;
     }
+
     public Member getRequester() {
         return getBookRecord().getRequester();
     }
+
+    public boolean contains(Book bk) {
+        return books.contains(bk);
+    }
+
     /**
      * Creates a record of books in clubBooks
      */

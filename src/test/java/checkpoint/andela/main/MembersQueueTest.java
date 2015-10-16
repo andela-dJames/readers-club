@@ -21,7 +21,7 @@ public class MembersQueueTest {
         andelamembersQ.addToQueue(pascal);
         andelamembersQ.addToQueue(pascal2);
 
-        assertEquals("The queue size should be 2", 2, andelamembersQ.getMembers().size());
+        assertTrue(andelamembersQ.contains(pascal2));
 
     }
 
