@@ -1,6 +1,6 @@
 package checkpoint.andela.main;
 
-import exceptions.MemberAlreadyexistExeption;
+import checkpoint.andela.exceptions.MemberAlreadyexistExeption;
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
